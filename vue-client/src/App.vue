@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="bg-grey-darker w-screen h-screen">
     <router-view/>
   </div>
 </template>
@@ -13,7 +13,4 @@ export default {
 </script>
 
 <style>
-#app {
-	margin-top: 60px;
-}
 </style>
