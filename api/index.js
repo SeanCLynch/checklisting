@@ -11,8 +11,6 @@ app.use(cors());
 let bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-const path = require('path');
-
 const Sequelize = require('sequelize');
 const sequelize = new Sequelize('database', 'username', 'password', {
   host: 'localhost',
@@ -27,6 +25,9 @@ const sequelize = new Sequelize('database', 'username', 'password', {
   storage: path.resolve(__dirname, 'test.db')
 });
 
+// Stripe Config ------------------------------------------
+
+const stripe = require('stripe')(process.env.STRIPE_KEY);
 
 // Models -------------------------------------------------
 
@@ -81,7 +82,7 @@ app.get('/list/export/:id', async (req, res) => {
   let tex_file = fs.createReadStream(tex_filename);
   let output = latex(tex_file);
   output.pipe(pdf_stream);
-  output.on('error' (err) => console.error(err));
+  output.on('error', (err) => console.error(err));
   pdf_stream.end();
 
   // Send output .pdf to user via res.sendFile.

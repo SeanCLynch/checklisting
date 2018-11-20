@@ -1,51 +1,60 @@
 <template>
- <div>
+  <div class="container mx-auto">
+    <div class="bg-grey-lighter flex flex-col h-full">
 
-  <navbar></navbar>
+      <div class="flex text-right px-4 py-2 m-2">
+        <div class="flex-1 items-center text-left px-4">{{list.title}}</div>
 
-    <div class="container-fluid">
-      <div class="row">
+        <button class="text-sm px-4 py-2 leading-none border rounded text-purple bg-white hover:border-transparent hover:text-white hover:bg-purple mt-4 lg:mt-0">
+          Export
+        </button>
 
-        <sidebar></sidebar>
-
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
-
-          <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-            <h1 class="h2">@List-Title</h1>
-            <div class="btn-toolbar mb-2 mb-md-0">
-              <div class="btn-group mr-2">
-		            <button class="btn btn-sm btn-outline-secondary">Scan</button>
-                <button class="btn btn-sm btn-outline-secondary">Share</button>
-                <button class="btn btn-sm btn-outline-secondary">Export</button>
-              </div>
-            </div>
-          </div>
-
-          <item></item>
-          <item></item>
-          <item></item>
-
-
-
-        </main>
-
+        <button class="text-sm px-4 py-2 leading-none border rounded text-purple bg-white hover:border-transparent hover:text-white hover:bg-purple mt-4 lg:mt-0">
+          Share
+        </button>
       </div>
+
+      <item></item>
+      <item></item>
+      <item></item>
+
     </div>
   </div>
 </template>
 
 <script>
 import axios from 'axios';
-import Navbar from '@/components/Navbar.vue';
-import Sidebar from '@/components/Sidebar.vue';
 import Item from '@/components/Item.vue';
 
 export default {
 	name: 'List',
 	components: {
-		'navbar': Navbar,
-		'sidebar': Sidebar,
 		'item': Item
-	}
+	},
+  data() {
+    return {
+      list: {
+        title: 'default'
+      }
+    };
+  },
+  methods: {
+    getList() {
+      const path = "http://localhost:4000/list/" + this.$route.params.id;
+      axios.get(path, {
+        responseType: 'json'
+      })
+      .then((res) => {
+        console.log(res);
+        this.list = res.data;
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    }
+  },
+  created() {
+    this.getList();
+  }
 };
 </script>

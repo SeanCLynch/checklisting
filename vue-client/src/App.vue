@@ -1,14 +1,20 @@
 <template>
-  <div id="app" class="bg-grey-darker w-screen h-screen">
+  <div id="app">
+    <navbar />
     <router-view/>
   </div>
 </template>
 
 <script>
+import 'vue-router';
 import '@/assets/styles/main.css'
+import Navbar from '@/components/Navbar.vue';
 
 export default {
   name: 'App',
+  components: {
+    'navbar': Navbar
+  }
 };
 </script>
 

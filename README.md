@@ -38,6 +38,9 @@ A good checklist, with the proper team culture, can dramatically reduce the dama
 
 ## Notes:
 
+TODO: install stripe, install dotenv, config stripe, consolidate config.
+TODO: create user model, add plan field, create login, signup, logout routes/views.
+
 
 __Best Practices:__
 * killer items/stupid mistakes: only the most critical/important steps.
@@ -64,6 +67,10 @@ __Examples of uses:__
 * https://www.nasa.gov/sites/default/files/atoms/files/nasa_systems_engineering_handbook.pdf
 * https://ecomply.io/product/
 * https://www.sideprojectchecklist.com/marketing-checklist/
+* https://www.indiehackers.com/@robhope/a-checklist-to-help-green-light-your-next-idea-bbd6ae1bcd
+* https://github.com/GitGuardian/APISecurityBestPractices/blob/master/Leak%20Mitigation%20Checklist.md
+* https://news.ycombinator.com/item?id=18386252
+
 Competitors:
 * https://process.st/
 * https://www.forgett.com/

@@ -1,10 +1,9 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import Homepage from '@/components/Homepage';
-import Ping from '@/components/Ping';
+import Login from '@/components/Login';
+import Lists from '@/components/Lists';
 import List from '@/components/List';
-import Admin from '@/components/Admin';
-import Collection from '@/components/Collection';
 
 Vue.use(Router);
 
@@ -16,24 +15,19 @@ export default new Router({
       component: Homepage,
     },
     {
-      path: '/admin',
-      name: 'Admin',
-      component: Admin,
+      path: '/login',
+      name: 'Login',
+      component: Login,
     },
     {
-      path: '/collection',
-      name: 'Collection',
-      component: Collection
+      path: '/lists',
+      name: 'Lists',
+      component: Lists,
     },
     {
       path: '/list/:id',
       name: 'List',
       component: List
-    },
-    {
-      path: '/ping',
-      name: 'Ping',
-      component: Ping,
     }
   ]
 });
