@@ -65,25 +65,26 @@
         </div>
       </div>
 
+      <!-- Pricing -->
+      <div id="pricing" class="flex flex-col">
+        <div class="flex-no-grow self-center text-center m-8 p-4 rounded-lg bg-grey-light w-auto">
+          Pricing
+        </div>
+      </div>
       <div id="features" class="flex flex-wrap pb-6">
           <div class="lg:flex-1">
-            <div class="text-center mt-12 text-xl font-medium">Easily create checklists</div>
+            <div class="text-center mt-12 text-xl font-medium">No Account</div>
             <div class="text-center text-sm leading-normal p-4">Use our editor to codify and manage complex processes. We let the list speak for itself.</div>
           </div>
 
           <div class="lg:flex-1">
-            <div class="text-center mt-12 text-xl font-medium">Check against best practices</div>
+            <div class="text-center mt-12 text-xl font-medium">Free Account</div>
             <div class="text-center text-sm leading-normal p-4">Maximize your efficiency using well researched best practices such as length, wording and type. </div>
           </div>
 
           <div class="lg:flex-1">
-            <div class="text-center mt-12 text-xl font-medium">Control your formatting</div>
+            <div class="text-center mt-12 text-xl font-medium">Paid Account</div>
             <div class="text-center text-sm leading-normal p-4">Format your checklists however you would like to using the power and flexibility of LaTex. </div>
-          </div>
-
-          <div class="lg:flex-1">
-            <div class="text-center mt-12 text-xl font-medium">Share and collaborate</div>
-            <div class="text-center text-sm leading-normal p-4">Work with your community to make great things happen! Share and build upon the work of your peers! </div>
           </div>
       </div>
 
@@ -179,7 +180,7 @@ export default {
   background-image: linear-gradient(to top, transparent, rgba(255,0,0,0), rgba(214,187,252,1))
 }
 
-#proof {
+#proof-old {
   background-image: linear-gradient(to bottom, transparent, rgba(255,0,0,0), rgba(218,225,231,1))
 }
 </style>
