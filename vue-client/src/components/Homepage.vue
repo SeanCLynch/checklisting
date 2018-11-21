@@ -6,7 +6,7 @@
       <div id="hero" class="flex flex-col h-screen">
         <div class="text-center self-center mt-auto mb-auto rounded-lg p-4">
 
-          <div class="font-sans font-bold text-2xl lg:text-5xl text-grey-darkest pb-2">
+          <div class="font-sans font-bold text-3xl lg:text-5xl text-grey-darkest pb-2">
             Checklisting, together
           </div>
 
@@ -26,32 +26,36 @@
         </div>
       </div>
 
-      <!-- What is it? -->
-      <div class="flex-1 text-center p-4 text-purple  bg-purple-lighter">
-        A principled, collaborative checklist editor.
+      <!-- Features -->
+      <div id="features" class="flex flex-wrap bg-purple text-white pb-6">
+          <div class="lg:flex-1">
+            <div class="text-center mt-12 text-xl font-medium">Easily create checklists</div>
+            <div class="text-center text-sm leading-normal p-4">Use our editor to codify and manage complex processes. We let the list speak for itself.</div>
+          </div>
+
+          <div class="lg:flex-1">
+            <div class="text-center mt-12 text-xl font-medium">Check against best practices</div>
+            <div class="text-center text-sm leading-normal p-4">Maximize your efficiency using well researched best practices such as length, wording and type. </div>
+          </div>
+
+          <div class="lg:flex-1">
+            <div class="text-center mt-12 text-xl font-medium">Control your formatting</div>
+            <div class="text-center text-sm leading-normal p-4">Format your checklists however you would like to using the power and flexibility of LaTex. </div>
+          </div>
+
+          <div class="lg:flex-1">
+            <div class="text-center mt-12 text-xl font-medium">Share and collaborate</div>
+            <div class="text-center text-sm leading-normal p-4">Work with your community to make great things happen! Share and build upon the work of your peers! </div>
+          </div>
       </div>
 
-      <!-- Features -->
-      <div id="features" class="flex">
-          <div class="flex-1">
-            <div class="text-center mt-8 mb-4">Easily create checklists</div>
-            <div class="text-center p-4">Use our editor to codify and manage complex processes. We let the list speak for itself.</div>
-          </div>
-
-          <div class="flex-1">
-            <div class="text-center mt-8 mb-4">Check against best practices</div>
-            <div class="text-center p-4">Maximize your efficiency using well researched best practices such as length, wording and type. </div>
-          </div>
-
-          <div class="flex-1">
-            <div class="text-center mt-8 mb-4">Control your formatting</div>
-            <div class="text-center p-4">Format your checklists however you would like to using the power and flexibility of LaTex. </div>
-          </div>
-
-          <div class="flex-1">
-            <div class="text-center mt-8 mb-4">Share and collaborate</div>
-            <div class="text-center p-4">Work with your community to make great things happen! Share and build upon the work of your peers! </div>
-          </div>
+      <!-- Example -->
+      <div id="example" class="flex-1 text-center mb-6 p-4 pt-6">
+        <div class="mt-6 mb-6">
+          <div class="text-xl font-medium">How it works</div>
+          <div class="text-sm leading-normal p-4">Blah</div>
+        </div>
+        <img src="https://www.placehold.it/500x700" />
       </div>
 
       <!-- Social Proof -->
@@ -60,9 +64,91 @@
           10,000 / 10,000! Amazing Stats!
         </div>
       </div>
-      <div class="flex bg-grey-light">Pricing</div>
+
+      <div id="features" class="flex flex-wrap pb-6">
+          <div class="lg:flex-1">
+            <div class="text-center mt-12 text-xl font-medium">Easily create checklists</div>
+            <div class="text-center text-sm leading-normal p-4">Use our editor to codify and manage complex processes. We let the list speak for itself.</div>
+          </div>
+
+          <div class="lg:flex-1">
+            <div class="text-center mt-12 text-xl font-medium">Check against best practices</div>
+            <div class="text-center text-sm leading-normal p-4">Maximize your efficiency using well researched best practices such as length, wording and type. </div>
+          </div>
+
+          <div class="lg:flex-1">
+            <div class="text-center mt-12 text-xl font-medium">Control your formatting</div>
+            <div class="text-center text-sm leading-normal p-4">Format your checklists however you would like to using the power and flexibility of LaTex. </div>
+          </div>
+
+          <div class="lg:flex-1">
+            <div class="text-center mt-12 text-xl font-medium">Share and collaborate</div>
+            <div class="text-center text-sm leading-normal p-4">Work with your community to make great things happen! Share and build upon the work of your peers! </div>
+          </div>
+      </div>
+
       <div class="flex bg-grey-light">Call to Action</div>
-      <div class="flex bg-purple-lighter">Footer</div>
+
+      <!-- Footer -->
+      <section class="bg-purple py-8 w-full">
+        <div class="container mx-auto px-8">
+            <div class="table w-full">
+                <div class="block sm:table-cell">
+                    <p class="uppercase text-purple-lighter text-sm sm:mb-6">Links</p>
+                    <ul class="list-reset text-xs mb-6">
+                        <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
+                            <a href="#" class="text-purple-lighter hover:text-white">FAQ</a>
+                        </li>
+                        <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
+                            <a href="#" class="text-purple-lighter hover:text-white">Help</a>
+                        </li>
+                        <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
+                            <a href="#" class="text-purple-lighter hover:text-white">Support</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="block sm:table-cell">
+                    <p class="uppercase text-purple-lighter text-sm sm:mb-6">Legal</p>
+                    <ul class="list-reset text-xs mb-6">
+                        <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
+                            <a href="#" class="text-purple-lighter hover:text-white">Terms</a>
+                        </li>
+                        <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
+                            <a href="#" class="text-purple-lighter hover:text-white">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="block sm:table-cell">
+                    <p class="uppercase text-purple-lighter text-sm sm:mb-6">Social</p>
+                    <ul class="list-reset text-xs mb-6">
+                        <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
+                            <a href="#" class="text-purple-lighter hover:text-white">Facebook</a>
+                        </li>
+                        <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
+                            <a href="#" class="text-purple-lighter hover:text-white">Linkedin</a>
+                        </li>
+                        <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
+                            <a href="#" class="text-purple-lighter hover:text-white">Twitter</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="block sm:table-cell">
+                    <p class="uppercase text-purple-lighter text-sm sm:mb-6">Company</p>
+                    <ul class="list-reset text-xs mb-6">
+                        <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
+                            <a href="#" class="text-purple-lighter hover:text-grey-dark">Official Blog</a>
+                        </li>
+                        <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
+                            <a href="#" class="text-purple-lighter hover:text-grey-dark">About Us</a>
+                        </li>
+                        <li class="mt-2 inline-block mr-2 sm:block sm:mr-0">
+                            <a href="#" class="text-purple-lighter hover:text-grey-dark">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
     </div>
   </div>
 </template>
@@ -89,7 +175,7 @@ export default {
   background-image: linear-gradient(to bottom, transparent, rgba(255,0,0,0), rgba(214,187,252,1))
 }
 
-#features {
+#example {
   background-image: linear-gradient(to top, transparent, rgba(255,0,0,0), rgba(214,187,252,1))
 }
 
