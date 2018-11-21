@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" class="h-full">
     <navbar />
     <router-view/>
   </div>
@@ -19,4 +19,7 @@ export default {
 </script>
 
 <style>
+html, body {
+  height: 100%;
+}
 </style>
