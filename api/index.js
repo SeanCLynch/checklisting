@@ -17,7 +17,7 @@ const sequelize = new Sequelize('database', 'username', 'password', {
   dialect: 'sqlite',
   operatorsAliases: false,
   pool: {
-    max: 5, 
+    max: 5,
     min: 0,
     acquire: 30000,
     idle: 10000
@@ -38,7 +38,7 @@ const List = sequelize.define('list', {
 });
 
 const Item = sequelize.define('item', {
-  description: { 
+  description: {
     type: Sequelize.STRING
   }
 });
@@ -123,4 +123,6 @@ app.delete('/list/:id', async (req, res) => {
 
 // Start webserver ---------------------------------------------
 
-app.listen(port, () => console.log(`Listening on ${port}!`))
+app.listen(port, () => console.log(`Listening on ${port}!`));
+
+module.exports =  app;
