@@ -25,9 +25,22 @@ export default new Router({
       component: Lists,
     },
     {
+      path: '/list/new',
+      name: 'NewList',
+      component: List,
+      props: {
+        default: true,
+        creatingList: true
+      }
+    },
+    {
       path: '/list/:id',
       name: 'List',
-      component: List
+      component: List,
+      props: {
+        default: true,
+        creatingList: false
+      }
     }
   ]
 });

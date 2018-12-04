@@ -15,9 +15,9 @@
     </div>
 
     <div class="p-2 text-right">
-      <button class="bg-purple hover:bg-purple-dark text-sm text-white font-bold py-2 px-4 rounded">
-        Create New Checklist
-      </button>
+      <router-link tag="button" to="/list/new" class="bg-purple hover:bg-purple-dark text-sm text-white font-bold py-2 px-4 rounded">
+        Create New
+      </router-link>
     </div>
 
     <div class="p-2 flex flex-col">

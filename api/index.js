@@ -54,9 +54,13 @@ app.get('/ping', async (req, res) => {
   res.send('Pong!');
 });
 
-// Create an empty list.
+// Create a new list.
 app.post('/list', async (req, res) => {
-  let new_list = await List.create(req.body.list);
+  console.log(req.body);
+  let raw_list = {
+    title: req.body.title
+  };
+  let new_list = await List.create(raw_list);
   res.json(new_list.dataValues);
 });
 
@@ -103,7 +107,7 @@ app.get('/lists', async (req, res) => {
 // Get a list and its items.
 app.get('/list/:id', async (req, res) => {
   let list = await List.findById(req.params.id);
-  let items = await List.findById(req.params.id).getItems(req.body.items);
+  let items = [] // await List.findById(req.params.id).getItems(req.body.items);
   res.json([list, items]);
 });
 
