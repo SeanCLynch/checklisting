@@ -10,9 +10,11 @@
       </div>
 
 
-      <!--<div class="text-grey-darker bg-grey-light px-4 py-2 m-2">
+      <!--
+      <div class="text-grey-darker bg-grey-light px-4 py-2 m-2">
       	Extra
-      </div>-->
+      </div>
+      -->
     </div>
   </div>
 </template>

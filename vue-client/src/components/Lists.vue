@@ -1,5 +1,6 @@
 <template>
   <div class="container mx-auto bg-grey-lighter min-h-full">
+    <div class="w-3/5 mx-auto">
 
     <div class="p-4 font-sans font-medium tracking-normal">
       Samples
@@ -68,6 +69,7 @@
     </div>
     -->
 
+    </div>
   </div>
 </template>
 

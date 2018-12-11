@@ -34,25 +34,25 @@
       </div>
 
       <div id="features" class="flex flex-wrap bg-purple text-white pb-6">
-          <div class="lg:flex-1">
-            <div class="text-center mt-8 text-xl font-medium">Easily create checklists</div>
-            <div class="text-center text-sm leading-normal p-4">Use our editor to codify and manage complex processes. We let the list speak for itself.</div>
-          </div>
+        <div class="lg:flex-1">
+          <div class="text-center mt-8 text-xl font-medium">Easily create checklists</div>
+          <div class="text-center text-sm leading-normal p-4">Use our editor to codify and manage complex processes. We let the list speak for itself.</div>
+        </div>
 
-          <div class="lg:flex-1">
-            <div class="text-center mt-8 text-xl font-medium">Check with best practices</div>
-            <div class="text-center text-sm leading-normal p-4">Maximize your efficiency using well researched best practices such as length, wording and type. </div>
-          </div>
+        <div class="lg:flex-1">
+          <div class="text-center mt-8 text-xl font-medium">Check with best practices</div>
+          <div class="text-center text-sm leading-normal p-4">Maximize your efficiency using well researched best practices such as length, wording and type. </div>
+        </div>
 
-          <div class="lg:flex-1">
-            <div class="text-center mt-8 text-xl font-medium">Control your formatting</div>
-            <div class="text-center text-sm leading-normal p-4">Format your checklists however you would like to using the power and flexibility of LaTex. </div>
-          </div>
+        <div class="lg:flex-1">
+          <div class="text-center mt-8 text-xl font-medium">Control your formatting</div>
+          <div class="text-center text-sm leading-normal p-4">Format your checklists however you would like to using the power and flexibility of LaTex. </div>
+        </div>
 
-          <div class="lg:flex-1">
-            <div class="text-center mt-8 text-xl font-medium">Share and collaborate</div>
-            <div class="text-center text-sm leading-normal p-4">Work with your community to make great things happen! Share and build upon the work of your peers! </div>
-          </div>
+        <div class="lg:flex-1">
+          <div class="text-center mt-8 text-xl font-medium">Share and collaborate</div>
+          <div class="text-center text-sm leading-normal p-4">Work with your community to make great things happen! Share and build upon the work of your peers! </div>
+        </div>
       </div>
 
       <!-- Example -->
@@ -66,40 +66,40 @@
 
       <!-- Social Proof -->
       <div id="proof" class="flex flex-col">
-        <div class="flex-no-grow self-center text-center m-8 p-4 rounded-lg bg-purple-light w-auto">
+        <div class="flex-no-grow self-center text-center m-8 mb-24 p-4 rounded-lg bg-purple-light w-auto">
           10,000 / 10,000! Amazing Stats!
         </div>
       </div>
 
       <!-- Pricing -->
-      <div id="pricing" class="flex-1 text-center p-4 pt-6">
-        <div class="mt-6">
-          <div class="text-xl font-semibold text-grey-darkest">Pricing</div>
+      <div id="pricing" class="flex-1 text-center pt-4 bg-grey-light">
+        <div class="mt-4">
+          <div class="text-xl font-semibold text-black">Pricing</div>
           <div class="text-sm leading-normal p-4">Pay what you want.</div>
         </div>
       </div>
 
       <div id="features" class="flex flex-wrap">
-          <div class="lg:flex-1 bg-grey-light mb-4 mr-auto ml-auto rounded">
-            <div class="text-center mt-6 text-xl font-medium">No Account</div>
-            <div class="text-center text-sm leading-normal p-4">With no account...</div>
-          </div>
+        <div class="lg:flex-1 bg-grey-light mr-auto ml-auto rounded">
+          <div class="text-center mt-6 text-xl font-medium">No Account</div>
+          <div class="text-center text-sm leading-normal p-4 mr-16 ml-16 p-4">With no account you can view and edit checklists, but not save any.</div>
+        </div>
 
-          <div class="lg:flex-1 bg-grey-light mb-4 mr-auto ml-auto rounded">
-            <div class="text-center mt-6 text-xl font-medium">Free Account</div>
-            <div class="text-center text-sm leading-normal p-4">With a free account you can...</div>
-          </div>
+        <div class="lg:flex-1 bg-grey-light mr-auto ml-auto rounded">
+          <div class="text-center mt-6 text-xl font-medium">Free Account</div>
+          <div class="text-center text-sm leading-normal p-4 mr-16 ml-16 p-4">With a free account you can view, edit, save and share any public checklists.</div>
+        </div>
 
-          <div class="lg:flex-1 bg-grey-light mb-4 mr-auto ml-auto rounded">
-            <div class="text-center mt-6 text-xl font-medium">Paid Account</div>
-            <div class="text-center text-sm leading-normal p-4">If you pay...</div>
-          </div>
+        <div class="lg:flex-1 bg-grey-light mr-auto ml-auto rounded">
+          <div class="text-center mt-6 text-xl font-medium">Paid Account</div>
+          <div class="text-center text-sm leading-normal p-4 mr-16 ml-16">With a paid account you can view, edit, save and share any public or private checklists.</div>
+        </div>
       </div>
 
 
       <!-- Call to Action -->
-      <div id="pricing" class="flex-1 text-center pt-8">
-        <div class="mt-4 mb-4">
+      <div id="cta-top" class="flex-1 text-center pt-8">
+        <div class="mt-8 mb-4">
           <div class="text-xl font-semibold text-grey-darkest">Sign up today!</div>
         </div>
       </div>
@@ -210,7 +210,11 @@ export default {
   background-image: linear-gradient(to top, transparent, rgba(255,0,0,0), rgba(214,187,252,1))
 }
 
-#proof-old {
-  background-image: linear-gradient(to bottom, transparent, rgba(255,0,0,0), rgba(218,225,231,1))
+#cta-top {
+  background-image: linear-gradient(to top, transparent, rgba(255,0,0,0), rgba(248,250,252,1))
+}
+
+#proof {
+  background-image: linear-gradient(to bottom, transparent, rgba(255,0,0,0), rgba(248,250,252,1))
 }
 </style>

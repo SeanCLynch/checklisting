@@ -11,6 +11,10 @@
 
         <div class="p-2 mb-2">
           <div class="flex justify-end">
+            <button v-on:click="deleteList" class="text-sm px-4 py-2 mr-2 border rounded text-purple bg-white hover:border-transparent hover:text-white hover:bg-purple lg:mt-0">
+              Delete
+            </button>
+
             <button v-on:click="saveList" class="text-sm px-4 py-2 mr-2 border rounded text-purple bg-white hover:border-transparent hover:text-white hover:bg-purple lg:mt-0">
               Save
             </button>
@@ -74,15 +78,27 @@ export default {
     };
   },
   methods: {
+    deleteList() {
+      let path = "http://localhost:4000/list/" + this.$route.params.id;
+      axios.delete(path)
+      .then((res) => {
+        console.log('delete list', res);
+        this.$router.push('/lists');
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+    },
     saveList() {
       console.log('saving list', this.list);
       const path = "http://localhost:4000/list";
       axios.post(path, this.list)
       .then((res) => {
         console.log(res);
+        this.$router.push('/list/' + res.data.id);
       })
       .catch((error) => {
-      console.error(error);
+        console.error(error);
       });
     },
     getList() {

@@ -66,6 +66,7 @@ app.post('/list', async (req, res) => {
 
 // TODO: Export a list. NPM install node-latex (and read README).
 app.get('/list/export/:id', async (req, res) => {
+  console.log("EXPORTING");
 
   // Gather models.
   let list = await List.findById(req.params.id);
@@ -106,6 +107,7 @@ app.get('/lists', async (req, res) => {
 
 // Get a list and its items.
 app.get('/list/:id', async (req, res) => {
+  console.log("GET /list/" + req.params.id);
   let list = await List.findById(req.params.id);
   let items = [] // await List.findById(req.params.id).getItems(req.body.items);
   res.json([list, items]);
@@ -120,8 +122,17 @@ app.put('/list/:id', async (req, res) => {
 
 // Delete a list and its items!
 app.delete('/list/:id', async (req, res) => {
-  List.findById(req.params.id).destroy();
-  res.json({'msg': 'deleted!'});
+  console.log("DELETE /list/" + req.params.id);
+  let list = await List.findById(req.params.id);
+  list.destroy()
+  .then((data) => {
+    res.json({'msg': 'deleted!'});
+  })
+  .catch((error) => {
+    console.error(error);
+    res.json({'msg': 'error!'});
+  })
+
 });
 
 
