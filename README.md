@@ -2,16 +2,16 @@
 
 Extreme complexity makes it easy to overlook routine matters during pressing circumstances (and moments of forgetfulness!). Formalizing these steps into a well-formatted series of actions, and making it easily accessible in all situations, are the key components of a good checklist.
 
-A good checklist, with the proper team culture, can dramatically reduce the damage of careless, trivial errors in a project. Checklists have been used in aviation, construction, surgery, and more with outstanding results. 
+A good checklist, with the proper team culture, can dramatically reduce the damage of careless, trivial errors in a project. Checklists have been used in aviation, construction, surgery, and more with outstanding results.
 
-> Checklisting (for tech) makes it easy to create, use, share, and iterate on checklists. 
+> Checklisting (for tech) makes it easy to create, use, share, and iterate on checklists.
 > Checklisting is a principled, community-driven project.
 
 
 ## Features:
 * Easily create checklists. Duh.
-* Automatically (and optionally!) scan your checklist for best practices (e.g. number of items, simple wording, do-confirm vs read-do, etc). 
-* Beautifully format your checklist for printing using the power of Latex. 
+* Automatically (and optionally!) scan your checklist for best practices (e.g. number of items, simple wording, do-confirm vs read-do, etc).
+* Beautifully format your checklist for printing using the power of Latex.
 * Update, change and revise checklists with the community, based on real-world experiences.
 * Or optionally create private checklists for secret things.
 * Subscribe to curated articles on embracing a culture of teamwork and professional discipline.
@@ -26,7 +26,7 @@ A good checklist, with the proper team culture, can dramatically reduce the dama
 
 ## Roadmap/Todos:
 1. Basic checklist creation on front-end.
-2. Basic 'scanning for best practices' on back end. 
+2. Basic 'scanning for best practices' on back end.
 3. Design data structures / create models.
 3. Intermediate latex-based formatting api.
 4. Basic sharability and authorization/accounts.

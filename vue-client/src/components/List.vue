@@ -68,10 +68,10 @@ export default {
         title: 'New list',
         items: [
           {
-            title: 'First Thing'
+            description: 'First Thing'
           },
           {
-            title: 'Second Thing'
+            description: 'Second Thing'
           }
         ]
       }
@@ -90,16 +90,29 @@ export default {
       });
     },
     saveList() {
-      console.log('saving list', this.list);
-      const path = "http://localhost:4000/list";
-      axios.post(path, this.list)
-      .then((res) => {
-        console.log(res);
-        this.$router.push('/list/' + res.data.id);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+      if (this.$route.params.id > 0) {
+        console.log('updating list', this.list);
+        const path = "http://localhost:4000/list/" + this.$route.params.id;
+        axios.put(path, this.list)
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      } else {
+        console.log('creating list', this.list);
+        const path = "http://localhost:4000/list";
+        axios.post(path, this.list)
+        .then((res) => {
+          console.log(res);
+          this.$router.push('/list/' + res.data.id);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+      }
+
     },
     getList() {
       const path = "http://localhost:4000/list/" + this.$route.params.id;
@@ -119,7 +132,7 @@ export default {
       console.log(this.list.items);
       let curr_list = this.list.items;
       curr_list.push({
-        title: "New Thing"
+        description: "New Thing"
       });
       this.list.items = curr_list;
     }

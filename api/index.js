@@ -11,41 +11,15 @@ app.use(cors());
 let bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
-const Sequelize = require('sequelize');
-const sequelize = new Sequelize('database', 'username', 'password', {
-  host: 'localhost',
-  dialect: 'sqlite',
-  operatorsAliases: false,
-  pool: {
-    max: 5,
-    min: 0,
-    acquire: 30000,
-    idle: 10000
-  },
-  storage: path.resolve(__dirname, 'test.db')
+// Database Config ------------------------------------------
+
+let models = require('./models');
+models.sequelize.sync().then(() => {
+  console.log('Database connection successful.');
+})
+.catch((err) => {
+  console.log('Something went wrong!', err);
 });
-
-// Stripe Config ------------------------------------------
-
-const stripe = require('stripe')(process.env.STRIPE_KEY);
-
-// Models -------------------------------------------------
-
-const List = sequelize.define('list', {
-  title: {
-    type: Sequelize.STRING
-  }
-});
-
-const Item = sequelize.define('item', {
-  description: {
-    type: Sequelize.STRING
-  }
-});
-
-List.hasMany(Item);
-Item.belongsTo(List);
-
 
 // Routes -------------------------------------------------
 
@@ -57,11 +31,23 @@ app.get('/ping', async (req, res) => {
 // Create a new list.
 app.post('/list', async (req, res) => {
   console.log(req.body);
+
   let raw_list = {
-    title: req.body.title
+    title: req.body.title,
+    Items: req.body.items
   };
-  let new_list = await List.create(raw_list);
-  res.json(new_list.dataValues);
+
+  let new_list;
+
+  try {
+    new_list = await models.List.create(raw_list, {
+      include: [ models.Item ]
+    });
+    res.json(new_list.dataValues);
+  } catch (err) {
+    console.log("ERROR", err);
+    res.json(err);
+  }
 });
 
 // TODO: Export a list. NPM install node-latex (and read README).
@@ -101,29 +87,37 @@ app.get('/list/export/:id', async (req, res) => {
 
 // Get all lists.
 app.get('/lists', async (req, res) => {
-  let lists = await List.all();
+  let lists = await models.List.findAll();
   res.json(lists);
 });
 
 // Get a list and its items.
 app.get('/list/:id', async (req, res) => {
   console.log("GET /list/" + req.params.id);
-  let list = await List.findById(req.params.id);
-  let items = [] // await List.findById(req.params.id).getItems(req.body.items);
+  let list = await models.List.findById(req.params.id);
+  let items = await list.getItems();
   res.json([list, items]);
 });
 
 // Update a list and its items.
 app.put('/list/:id', async (req, res) => {
-  let updated_list = await List.findById(req.params.id).update(req.body.list);
-  let updated_items = await List.findById(req.params.id).setItems(req.body.items);
+  console.log("UPDATE /list/" + req.params.id);
+  try {
+    let list = await models.List.findById(req.params.id);
+    let updated_list = await list.update(req.body);
+    let updated_items = await updated_list.setItems(req.body.items);
+    // TODO: Update all items for the list. Promise.all or something.
+  } catch (err) {
+    console.log(err);
+  }
+
   res.json({'msg': 'updated!'});
 });
 
 // Delete a list and its items!
 app.delete('/list/:id', async (req, res) => {
   console.log("DELETE /list/" + req.params.id);
-  let list = await List.findById(req.params.id);
+  let list = await models.List.findById(req.params.id);
   list.destroy()
   .then((data) => {
     res.json({'msg': 'deleted!'});
