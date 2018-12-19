@@ -5,7 +5,7 @@
 
         <form id="test">
 
-        <div class="p-2 text-xl tracking-normal">
+        <div class="p-2 mt-2 text-xl tracking-normal">
           <input type="text" v-model="list.title" class="bg-grey-light appearance-none border-2 border-grey-lighter rounded w-full py-2 px-4 text-grey-darker leading-tight focus:outline-none focus:bg-white focus:border-purple">
         </div>
 
