@@ -13,13 +13,16 @@ app.use(bodyParser.json());
 
 // Database Config ------------------------------------------
 
-let models = require('./models');
-models.sequelize.sync().then(() => {
-  console.log('Database connection successful.');
-})
-.catch((err) => {
-  console.log('Something went wrong!', err);
-});
+const nano = require('nano')('http://localhost:5984');
+const db = nano.use('checklists');
+async function abc() {
+  const doc_list = await db.list({include_docs: true});
+  const checklists = doc_list.rows.map((doc) => {
+    return doc;
+  });
+  console.log(doc_list, checklists);
+}
+// abc()
 
 // Routes -------------------------------------------------
 
@@ -87,8 +90,16 @@ app.get('/list/export/:id', async (req, res) => {
 
 // Get all lists.
 app.get('/lists', async (req, res) => {
-  let lists = await models.List.findAll();
-  res.json(lists);
+  try {
+    const doc_list = await db.list({include_docs: true});
+    const checklists = doc_list.rows.map((doc) => {
+      return doc;
+    });
+    console.log(doc_list, checklists);
+    res.json(checklists);
+  } catch (err) {
+    console.error(err);
+  }
 });
 
 // Get a list and its items.
