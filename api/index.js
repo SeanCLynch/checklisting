@@ -1,6 +1,6 @@
 const express = require('express');
 const app = express();
-const port = 4000;
+const port = 3001;
 
 const fs = require('fs');
 const path = require('path');
@@ -27,12 +27,12 @@ async function abc() {
 // Routes -------------------------------------------------
 
 // Test route.
-app.get('/ping', async (req, res) => {
+app.get('/api/ping', async (req, res) => {
   res.send('Pong!');
 });
 
 // Create a new list.
-app.post('/list', async (req, res) => {
+app.post('/api/list', async (req, res) => {
   console.log(req.body);
 
   let raw_list = {
@@ -54,7 +54,7 @@ app.post('/list', async (req, res) => {
 });
 
 // TODO: Export a list. NPM install node-latex (and read README).
-app.get('/list/export/:id', async (req, res) => {
+app.get('/api/list/export/:id', async (req, res) => {
   console.log("EXPORTING");
 
   // Gather models.
@@ -89,29 +89,44 @@ app.get('/list/export/:id', async (req, res) => {
 });
 
 // Get all lists.
-app.get('/lists', async (req, res) => {
+app.get('/api/lists', async (req, res) => {
   try {
     const doc_list = await db.list({include_docs: true});
     const checklists = doc_list.rows.map((doc) => {
-      return doc;
+      return doc.doc;
     });
-    console.log(doc_list, checklists);
+    // console.log("GET /api/lists", checklists);
     res.json(checklists);
   } catch (err) {
     console.error(err);
   }
 });
 
+app.get('/api/samples', async (req, res) => {
+  try {
+	const security = await db.get('545b5526a411c17c8a7431dff00036e1');
+	const childbirth = await db.get('545b5526a411c17c8a7431dff000630b');
+	const accessibility = await db.get('545b5526a411c17c8a7431dff000714e');
+	let checklists = [security, childbirth, accessibility];
+	res.json(checklists);
+  } catch (err) {
+	console.error(err);
+  }
+});
+
 // Get a list and its items.
-app.get('/list/:id', async (req, res) => {
+app.get('/api/list/:id', async (req, res) => {
   console.log("GET /list/" + req.params.id);
-  let list = await models.List.findById(req.params.id);
-  let items = await list.getItems();
-  res.json([list, items]);
+  const checklist = await db.get(req.params.id);
+  res.json(checklist);
+
+  // let list = await models.List.findById(req.params.id);
+  // let items = await list.getItems();
+  // res.json([list, items]);
 });
 
 // Update a list and its items.
-app.put('/list/:id', async (req, res) => {
+app.put('/api/list/:id', async (req, res) => {
   console.log("UPDATE /list/" + req.params.id);
   try {
     let list = await models.List.findById(req.params.id);
@@ -126,7 +141,7 @@ app.put('/list/:id', async (req, res) => {
 });
 
 // Delete a list and its items!
-app.delete('/list/:id', async (req, res) => {
+app.delete('/api/list/:id', async (req, res) => {
   console.log("DELETE /list/" + req.params.id);
   let list = await models.List.findById(req.params.id);
   list.destroy()

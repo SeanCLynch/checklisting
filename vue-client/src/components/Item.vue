@@ -6,7 +6,7 @@
       </div>
 
       <div class="flex-grow text-grey-darker mr-2">
-      	<input type="text" v-model="checklist_item.description" class="bg-grey-light appearance-none border-2 border-grey-lighter rounded w-full py-2 px-4 text-grey-darker leading-tight focus:outline-none focus:bg-white focus:border-purple">
+      	<input type="text" v-model="checklist_item.content" class="bg-grey-light appearance-none border-2 border-grey-lighter rounded w-full py-2 px-4 text-grey-darker leading-tight focus:outline-none focus:bg-white focus:border-purple">
       </div>
 
 

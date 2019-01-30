@@ -119,14 +119,15 @@ export default {
 
     },
     getList() {
-      const path = "http://localhost:4000/list/" + this.$route.params.id;
+      const path = "http://checklisting.club/api/list/" + this.$route.params.id;
       axios.get(path, {
         responseType: 'json'
       })
       .then((res) => {
         console.log(res);
-        this.list.title = res.data[0].title;
-        this.list.items = res.data[1];
+        //this.list.title = res.data[0].title;
+        //this.list.items = res.data[1];
+	this.list = res.data;
       })
       .catch((error) => {
         console.error(error);

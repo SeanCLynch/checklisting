@@ -7,13 +7,13 @@
     </div>
 
     <div class="p-2 flex flex-col">
-      <div class="p-2 mb-2 bg-grey rounded">
-        Text
-      </div>
-      <div class="p-2 bg-grey rounded">
-        Text
+      <div class="p-2 mb-2 bg-grey rounded" v-for="list in samples">
+        <router-link :to="{ name: 'List', params: { id: list._id }}">
+          {{ list.title }}
+        </router-link>
       </div>
     </div>
+
 
     <div class="p-2 text-right">
       <router-link tag="button" to="/list/new" class="bg-purple hover:bg-purple-dark text-sm text-white font-bold py-2 px-4 rounded">
@@ -84,12 +84,26 @@ export default {
   },
   data() {
     return {
-      lists: []
+      lists: [],
+      samples: []
     };
   },
   methods: {
+    getSamples() {
+      const path = "http://checklisting.club/api/samples";
+      axios.get(path, {
+	responseType: 'json'
+      })
+      .then((res) => {
+	console.log(res);
+	this.samples = res.data;
+      })
+      .catch((error) => {
+	console.error(error);
+      });
+    },
     getLists() {
-      const path = "http://localhost:4000/lists";
+      const path = "http://checklisting.club/api/lists";
       axios.get(path, {
         responseType: 'json'
       })
@@ -104,6 +118,7 @@ export default {
   },
   created() {
     this.getLists();
+    this.getSamples();
   }
 };
 </script>
