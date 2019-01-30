@@ -27,6 +27,10 @@
               Share
             </button>
 
+	    <button class="text-sm px-4 py-2 mr-2 border rounded text-purple bg-white hober:border-transparent hover:text-white hover:bg-purple lg:mt-0">
+	      Fork
+	    </button>
+
           </div>
         </div>
 
