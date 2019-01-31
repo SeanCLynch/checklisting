@@ -58,10 +58,13 @@
       <!-- Example -->
       <div id="example" class="flex-1 text-center mb-6 p-4 pt-6">
         <div class="mt-6 mb-6">
-          <div class="text-xl font-semibold text-grey-darkest">How it works</div>
-          <div class="text-sm leading-normal p-4">Blah</div>
+          <div class="text-xl font-semibold text-grey-darkest">Open Experimentation</div>
+          <div class="text-sm leading-normal p-4">Try out any of our sample lists below and see for yourself!</div>
+	  <div class="align-center mb-6">
+	    <button class="px-3 py-2 border rounded text-white bg-purple">Security</button>
+	    <button class="px-3 py-2 border rounded text-white bg-purple">Childbirth</button>
         </div>
-        <img src="@/assets/list-example.png" />
+        <img src="@/assets/list-example.png" style="width: 75%" />
       </div>
 
       <!-- Social Proof -->

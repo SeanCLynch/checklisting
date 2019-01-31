@@ -39,7 +39,6 @@ A good checklist, with the proper team culture, can dramatically reduce the dama
 ## Notes:
 TODO: Add port, host, api url as env variables for api and vue-client (use dotenv?).
 TODO: Toggle checkbox to bg-green and text-white on click.
-TODO: Take screenshots of samples for landing page (extra: add browser frame to img).
 TODO: Add `stats` route for landing page (users, lists, shares/forks, etc).
 TODO: Finish pricing copy and add form input route.
 TODO: Unify CTA in nav-menu, hero/splash screen, and footer.
