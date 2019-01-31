@@ -61,7 +61,7 @@
           <div class="text-xl font-semibold text-grey-darkest">How it works</div>
           <div class="text-sm leading-normal p-4">Blah</div>
         </div>
-        <img src="https://www.placehold.it/500x600" />
+        <img src="@/assets/list-example.png" />
       </div>
 
       <!-- Social Proof -->
