@@ -6,11 +6,19 @@ const port = process.env.API_PORT;
 const fs = require('fs');
 const path = require('path');
 
-app.use(express.static('public'));
+// Logging Config ------------------------------------------
+
+const morgan = require('morgan');
+app.use(morgan(':status :method :url - :response-time ms'));
+
+// View Config ---------------------------------------------
 
 const exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
+app.use(express.static('public'));
+
+// Request Config -------------------------------------------
 
 let cors = require('cors');
 app.use(cors());
@@ -20,53 +28,89 @@ app.use(bodyParser.json());
 
 // Database Config ------------------------------------------
 
-const nano = require('nano')('http://localhost:5984');
-const db = nano.use('checklists');
-async function abc() {
-  const doc_list = await db.list({include_docs: true});
-  const checklists = doc_list.rows.map((doc) => {
-    return doc;
-  });
-  console.log(doc_list, checklists);
-}
-// abc()
+const nano = require('nano')(process.env.DB_URL);
+const db = nano.use(process.env.DB_NAME);
 
 // Routes -------------------------------------------------
+
+// VIEWS
 
 app.get('/', async (req, res) => {
   res.render('home');
 });
 
-// Test route.
+app.get('/login', async (req, res) => {
+  res.render('login');
+});
+
+app.get('/signup', async (req, res) => {
+  res.render('signup');
+});
+
+app.get('/dashboard', async (req, res) => {
+  res.render('dashboard');
+});
+
+app.get('/:username/:listname', async (req, res) => {
+  res.render('list');
+});
+
+// MISC
+
+// Test route, health checks and such.
 app.get('/api/ping', async (req, res) => {
   res.send('Pong!');
 });
 
-// Create a new list.
-app.post('/api/list', async (req, res) => {
-  console.log(req.body);
+// API
 
-  let raw_list = {
-    title: req.body.title,
-    Items: req.body.items
-  };
-
-  let new_list;
-
-  try {
-    new_list = await models.List.create(raw_list, {
-      include: [ models.Item ]
-    });
-    res.json(new_list.dataValues);
-  } catch (err) {
-    console.log("ERROR", err);
-    res.json(err);
-  }
+// TODO: Create user.
+app.post('/api/user', async (req, res) => {
+  res.send('create user');
 });
 
-// TODO: Export a list. NPM install node-latex (and read README).
-app.get('/api/list/export/:id', async (req, res) => {
-  console.log("EXPORTING");
+// TODO: Read/get user.
+app.post('/api/user/:id', async (req, res) => {
+  res.send('read/get user');
+});
+
+// TODO: Update user.
+app.put('/api/user/:id', async (req, res) => {
+  res.send('update user');
+});
+
+// TODO: Delete user. 
+app.delete('/api/user/:id', async (req, res) => {
+  res.send('delete user');
+});
+
+
+// TODO: Create list.
+app.post('/api/list', async (req, res) => {
+  res.send('create list');
+});
+
+// Read/get list.
+app.get('/api/list/:id', async (req, res) => {
+  console.log("GET /list/" + req.params.id);
+  const checklist = await db.get(req.params.id);
+  res.json(checklist);
+});
+
+// TODO: Update list.
+app.put('/api/list/:id', async (req, res) => {
+  res.send('update list');
+});
+
+// TODO: Delete list. 
+app.delete('/api/list/:id', async (req, res) => {
+  res.send('delete list');
+});
+
+// TODO: Export list.
+// Check out node-latex.
+app.get('/api/list/:id/export', async (req, res) => {
+  console.log('exporting list');
 
   // Gather models.
   let list = await List.findById(req.params.id);
@@ -74,7 +118,7 @@ app.get('/api/list/export/:id', async (req, res) => {
 
   // Create input.tex using list and items objects.
   let tex_filename = `/tex/{list.id}.tex`;
-  let tex_stream = fs.createWriteStream(tex_filename); // TODO:  appending flag?
+  let tex_stream = fs.createWriteStream(tex_filename); // appending flag?
   tex_stream.write('Hello, ');
   tex_stream.write('World!');
   tex_stream.end();
@@ -103,72 +147,15 @@ app.get('/api/list/export/:id', async (req, res) => {
 app.get('/api/lists', async (req, res) => {
   try {
     const doc_list = await db.list({include_docs: true});
-    const checklists = doc_list.rows.map((doc) => {
-      return doc.doc;
-    });
-    // console.log("GET /api/lists", checklists);
+    const checklists = doc_list.rows.map((doc) => { return doc.doc; });
     res.json(checklists);
   } catch (err) {
     console.error(err);
   }
 });
 
-app.get('/api/samples', async (req, res) => {
-  try {
-	const security = await db.get('545b5526a411c17c8a7431dff00036e1');
-	const childbirth = await db.get('545b5526a411c17c8a7431dff000630b');
-	const accessibility = await db.get('545b5526a411c17c8a7431dff000714e');
-	let checklists = [security, childbirth, accessibility];
-	res.json(checklists);
-  } catch (err) {
-	console.error(err);
-  }
-});
-
-// Get a list and its items.
-app.get('/api/list/:id', async (req, res) => {
-  console.log("GET /list/" + req.params.id);
-  const checklist = await db.get(req.params.id);
-  res.json(checklist);
-
-  // let list = await models.List.findById(req.params.id);
-  // let items = await list.getItems();
-  // res.json([list, items]);
-});
-
-// Update a list and its items.
-app.put('/api/list/:id', async (req, res) => {
-  console.log("UPDATE /list/" + req.params.id);
-  try {
-    let list = await models.List.findById(req.params.id);
-    let updated_list = await list.update(req.body);
-    let updated_items = await updated_list.setItems(req.body.items);
-    // TODO: Update all items for the list. Promise.all or something.
-  } catch (err) {
-    console.log(err);
-  }
-
-  res.json({'msg': 'updated!'});
-});
-
-// Delete a list and its items!
-app.delete('/api/list/:id', async (req, res) => {
-  console.log("DELETE /list/" + req.params.id);
-  let list = await models.List.findById(req.params.id);
-  list.destroy()
-  .then((data) => {
-    res.json({'msg': 'deleted!'});
-  })
-  .catch((error) => {
-    console.error(error);
-    res.json({'msg': 'error!'});
-  })
-
-});
-
-
 // Start webserver ---------------------------------------------
 
 app.listen(port, () => console.log(`Listening on ${port}!`));
 
-module.exports =  app;
+module.exports = app;
