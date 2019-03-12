@@ -1,9 +1,16 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
-const port = 3001;
+const port = process.env.API_PORT;
 
 const fs = require('fs');
 const path = require('path');
+
+app.use(express.static('public'));
+
+const exphbs = require('express-handlebars');
+app.engine('handlebars', exphbs({defaultLayout: 'main'}));
+app.set('view engine', 'handlebars');
 
 let cors = require('cors');
 app.use(cors());
@@ -25,6 +32,10 @@ async function abc() {
 // abc()
 
 // Routes -------------------------------------------------
+
+app.get('/', async (req, res) => {
+  res.render('home');
+});
 
 // Test route.
 app.get('/api/ping', async (req, res) => {
