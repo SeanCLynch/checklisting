@@ -1,6 +1,77 @@
+<div class="flex flex-col w-full">
+  
+  {{!-- Hero --}}
+  <div id="hero-bg" class="bg-white min-h-screen flex items-center">
+    <div class="bg-white text-center mx-auto p-4 border-2 border-purple rounded"> 
+      <div class="text-4xl mb-4">Checklisting, together | Check it's done</div>
+      <div>Checklisting.Club is a simple, collaborative checklist editor.</div>
+      <div class="m-4">
+        <button class="bg-white hover:bg-purple text-purple font-semibold hover:text-white py-2 px-4 border border-purple hover:border-white rounded">Learn More</button>
+        <a href="/lists"><button class="bg-white hover:bg-purple text-purple font-semibold hover:text-white py-2 px-4 border border-purple hover:border-white rounded">Try It Out</button></a>
+      </div>
+    </div>
+  </div>
 
-  <div id="bg-boxes" class="container mx-auto">
-    <div class="flex flex-col">
+  {{!-- Products --}}
+  <div class="bg-grey-lighter flex flex-row flex-wrap border-t-2 border-b-2 border-purple">
+    <div class="w-full p-8 md:w-1/3 flex-none text-center border-b-2 md:border-r-2 md:border-b-0 border-purple">
+      <div class="text-2xl mb-2">.Free</div>
+      <div>Description</div>
+      <div>Features</div>
+      <div>Pricing</div>
+    </div>
+    <div class="w-full p-8 md:w-1/3 flex-none text-center bg-grey-light border-b-2 md:border-r-2 md:border-b-0 border-purple">
+      <div class="text-2xl mb-2">.Club</div>
+      <div>For individuals that want a more collaborative, systematic approach to their work, Checklisting.Club provides a collaborative and systematic set of tools that provide peace of mind.</div>
+      <div>Features</div>
+      <div>Pricing</div>
+    </div>
+    <div class="w-full p-8 md:w-1/3 flex-none text-center">
+      <div class="text-2xl mb-2">.Org</div>
+      <div>For organizations that need safety during cruical, complex processes, Checklisting.Org provides a collaborative and systematic set of tools that provide peace of mind.</div>
+      <div>Features</div>
+      <div>Pricing</div>
+    </div>
+  </div>
+
+  {{!-- Examples --}}
+  <div id="hero-bg" class="bg-white p-8 text-center">
+    <div>
+      <div class="text-2xl">Samples</div>
+      <div class="m-4">
+        <button class="bg-white hover:bg-purple text-purple font-semibold hover:text-white py-2 px-4 border border-purple hover:border-white rounded">Aviation</button>
+        <button class="bg-white hover:bg-purple text-purple font-semibold hover:text-white py-2 px-4 border border-purple hover:border-white rounded">Medical</button>
+        <button class="bg-white hover:bg-purple text-purple font-semibold hover:text-white py-2 px-4 border border-purple hover:border-white rounded">Security</button>
+      </div>
+    </div>
+    <div>
+      <img src="/img/list-example.64f1662.png" class="shadow-md md:w-3/4 ">
+    </div>
+  </div>
+
+  {{!-- Call to Action --}}
+  <div class="bg-grey-lighter p-8 text-center border-t-2 border-purple">
+    <div class="text-2xl">Join over # users working on # checklists!</div>
+    <div class="m-4">
+      <button class="bg-white hover:bg-purple text-purple font-semibold hover:text-white py-2 px-4 border border-purple hover:border-white rounded">Learn More</button>
+      <a href="/lists"><button class="bg-white hover:bg-purple text-purple font-semibold hover:text-white py-2 px-4 border border-purple hover:border-white rounded">Try It Out</button></a>
+    </div>
+  </div>
+  
+  {{!-- Footer --}}
+  <div class="bg-purple p-8 flex flex-row flex-wrap">
+    <div class="w-full md:w-1/4 flex-none text-center">Links</div>
+    <div class="w-full pt-8 md:w-1/4 md:pt-0 flex-none text-center">Legal</div>
+    <div class="w-full pt-8 md:w-1/4 md:pt-0 flex-none text-center">Social</div>
+    <div class="w-full pt-8 md:w-1/4 md:pt-0 flex-none text-center">Company</div>
+  </div>
+</div>
+
+
+
+
+    {{!-- <div class="flex flex-col">
+
       <div id="hero" class="flex flex-col h-screen">
         <div class="text-center self-center mt-auto mb-auto rounded-lg p-4">
           <div class="font-sans font-bold text-3xl lg:text-5xl text-grey-darkest pb-2">
@@ -18,11 +89,13 @@
             </button></div>
         </div>
       </div>
+
       <div id="pricing" class="flex-1 text-center pt-4 bg-purple">
         <div class="mt-4">
           <div class="text-xl font-semibold text-white">Features</div>
         </div>
       </div>
+
       <div id="features" class="flex flex-wrap bg-purple text-white pb-6">
         <div class="lg:flex-1">
           <div class="text-center mt-8 text-xl font-medium">Easily create checklists</div>
@@ -45,6 +118,7 @@
             Share and build upon the work of your peers! </div>
         </div>
       </div>
+
       <div id="example" class="flex-1 text-center mb-6 p-4 pt-6">
         <div class="mt-6 mb-6">
           <div class="text-xl font-semibold text-grey-darkest">Open Experimentation</div>
@@ -101,6 +175,7 @@
             </div>
           </div>
         </div>
+
         <section class="bg-purple py-8 w-full">
           <div class="container mx-auto px-8">
             <div class="table w-full">
@@ -150,5 +225,5 @@
           </div>
         </section>
       </div>
-    </div>
-  </div>
+
+    </div> --}}
