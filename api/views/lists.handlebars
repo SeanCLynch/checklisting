@@ -1,0 +1,23 @@
+
+  <div class="w-full md:w-3/5 md:mx-auto">
+
+    <div class="p-4 font-sans font-medium tracking-normal">
+      Samples
+    </div>
+
+    <div class="p-2 flex flex-col">
+      {{#each checklists}}
+      <div class="p-2 mb-2 bg-grey rounded">
+        <a href="/list/{{this.title}}">{{this.title}}</a>
+      </div>
+      {{/each}}
+    </div>
+
+    <div class="p-2 text-right">
+      <a href="/list/new" class="bg-purple hover:bg-purple-dark text-sm text-white font-bold py-2 px-4 rounded">
+        Create New
+      </a>
+    </div>
+
+  </div>
+</div>

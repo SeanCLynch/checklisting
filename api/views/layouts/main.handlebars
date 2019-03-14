@@ -4,10 +4,18 @@
     <meta charset="utf-8">
     <title>Example App</title>
     <link rel="stylesheet"  href="/css/styles.css">
+    <style>
+        html, body { 
+            height: 100%;
+        }
+    </style>
 </head>
 <body>
-
-    {{{body}}}
-
+    <div id="app" class="h-full">
+        {{> navmenu }}
+        <div class="flex bg-grey-lighter h-full w-full">
+            {{{ body }}}
+        </div>
+    </div>
 </body>
 </html>

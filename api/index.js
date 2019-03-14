@@ -39,6 +39,13 @@ app.get('/', async (req, res) => {
   res.render('home');
 });
 
+app.get('/lists', async (req, res) => {
+  let checklists = await getLists();	
+  res.render('lists', {
+    "checklists": checklists
+  });
+});
+
 app.get('/login', async (req, res) => {
   res.render('login');
 });
@@ -144,14 +151,19 @@ app.get('/api/list/:id/export', async (req, res) => {
 });
 
 // Get all lists.
-app.get('/api/lists', async (req, res) => {
+async function getLists() {
   try {
     const doc_list = await db.list({include_docs: true});
     const checklists = doc_list.rows.map((doc) => { return doc.doc; });
-    res.json(checklists);
+    return checklists;
   } catch (err) {
     console.error(err);
   }
+};
+
+app.get('/api/lists', async (req, res) => {
+  let checklists = await getLists(); 
+  res.json(checklists);
 });
 
 // Start webserver ---------------------------------------------
