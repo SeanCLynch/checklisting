@@ -166,6 +166,14 @@ app.get('/api/lists', async (req, res) => {
   res.json(checklists);
 });
 
+app.get('/api/stats', async (req, res) => {
+  res.send('stats');
+});
+
+app.get('/api/pricing', async (req, res) => {
+  res.send('pricing interest');
+});
+
 // Start webserver ---------------------------------------------
 
 app.listen(port, () => console.log(`Listening on ${port}!`));

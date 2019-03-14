@@ -4,8 +4,9 @@ Extreme complexity makes it easy to overlook routine matters during pressing cir
 
 A good checklist, with the proper team culture, can dramatically reduce the damage of careless, trivial errors in a project. Checklists have been used in aviation, construction, surgery, and more with outstanding results.
 
-> Checklisting (for tech) makes it easy to create, use, share, and iterate on checklists.
-> Checklisting is a principled, community-driven project.
+>For skilled workers and managers who need safety during crucial, complex processes, Checklisting.Club is a website that provides a collaborative and systematic set of tools to provide peace of mind.
+
+Unlike a surgeon forgetting to wash his hands | a pilot panicking in a storm | a security guard wandering aimlessly | etc., Checklisting.Club provides a collaborative action plan for any situation. 
 
 
 ## Features:
@@ -25,11 +26,12 @@ A good checklist, with the proper team culture, can dramatically reduce the dama
 
 
 ## Roadmap/Todos:
-1. Basic checklist creation on front-end.
-2. Basic 'scanning for best practices' on back end.
-3. Design data structures / create models.
-3. Intermediate latex-based formatting api.
-4. Basic sharability and authorization/accounts.
+* TODO: Create user model, with login, signup, logout workflow and list associations.
+* TODO: Finish (6) views.
+* TODO: Finish (10) api routes.
+* TODO: Include sample ngninx/apache config in repo.
+* TODO: Toggle checkbox to bg-green and text-white on click.
+* TODO: Install and configure stripe.
 
 
 ## Contributors:
@@ -37,16 +39,6 @@ A good checklist, with the proper team culture, can dramatically reduce the dama
 
 
 ## Notes:
-TODO: Add port, host, api url as env variables for api and vue-client (use dotenv?).
-TODO: Toggle checkbox to bg-green and text-white on click.
-TODO: Add apache config for pointing at node apps.
-TODO: Add `stats` route for landing page (users, lists, shares/forks, etc).
-TODO: Finish pricing copy and add form input route.
-TODO: Unify CTA in nav-menu, hero/splash screen, and footer.
-TODO: Add project description to footer.
-
-TODO: Install and configure stripe.
-TODO: Create user model, with login, signup, logout workflow and list associations.
 
 __Best Practices:__
 * killer items/stupid mistakes: only the most critical/important steps.
@@ -55,22 +47,24 @@ __Best Practices:__
 * authorize a reader: assign specific team member to initiate checklist use.
 
 
-__Scripts/Commands/Magic Spells:__
-* `> source bin/activate` opens the project.
-* `> deactivate` closes the project.
-* `ssh -f -N -L 5984:localhost:5984 sean@checklisting.club` use fauxton locally.
-* `ps -ef | grep ssh` then `kill PID` to close ssh.
-* `./deploy.sh` in vue-client to deploy to apache.
-* `npm start` in api to start.
-* `sudo docker run -p 5984:5984 -d couchdb` && `curl http://localhost:5984` - start dockerized couchdb & ping it for life
+__Scripts / Commands / Magic Spells:__
+* `npm start` - runs server
+* `sudo docker ps`, `sudo docker run -p 5984:5984 -d couchdb`, `sudo docker pause/unpause <container_name>` - dev couchdb
+* `ssh -f -N -L 5984:localhost:5984 sean@checklisting.club` use remote futon locally. `ps -ef | grep ssh` then `kill <PID>` to close ssh.
+* `curl http://localhost:5984` to check couchdb, `http://localhost:5984/_utils` for futon.
+
 
 __Examples of uses:__
 * https://news.ycombinator.com/item?id=16956899
-* https://www.owasp.org/index.php/OWASP_Cheat_Sheet_Series
+* https://news.ycombinator.com/item?id=18386252
+* https://news.ycombinator.com/item?id=19032180
 * https://news.ycombinator.com/item?id=16987210
 * https://news.ycombinator.com/item?id=17007548
 * https://github.com/shieldfy/API-Security-Checklist
 * https://github.com/Hack-with-Github/Awesome-Hacking
+* https://github.com/GitGuardian/APISecurityBestPractices/blob/master/Leak%20Mitigation%20Checklist.md
+* https://www.owasp.org/index.php/OWASP_Cheat_Sheet_Series
+* https://www.owasp.org/images/7/72/OWASP_Top_10-2017_(en).pdf.pdf
 * https://www.producthunt.com/posts/front-end-design-checklist
 * https://jdow.io/blog/2018/03/18/web-application-penetration-testing-methodology/#osint-harvesting
 * https://zeltser.com/cheat-sheets/
@@ -78,13 +72,10 @@ __Examples of uses:__
 * https://ecomply.io/product/
 * https://www.sideprojectchecklist.com/marketing-checklist/
 * https://www.indiehackers.com/@robhope/a-checklist-to-help-green-light-your-next-idea-bbd6ae1bcd
-* https://github.com/GitGuardian/APISecurityBestPractices/blob/master/Leak%20Mitigation%20Checklist.md
-* https://news.ycombinator.com/item?id=18386252
-* https://news.ycombinator.com/item?id=19032180
 * https://securitycheckli.st/
-* https://www.owasp.org/images/7/72/OWASP_Top_10-2017_(en).pdf.pdf
 * https://24ways.org/2018/securing-your-site-like-its-1999/
 
-Competitors:
+
+__Competitors (?):__
 * https://process.st/
 * https://www.forgett.com/
