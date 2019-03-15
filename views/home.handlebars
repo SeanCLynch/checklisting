@@ -16,7 +16,10 @@
   <div class="bg-grey-lighter flex flex-row flex-wrap border-t-2 border-b-2 border-purple">
     <div class="w-full p-8 md:w-1/3 flex-none text-center border-b-2 md:border-r-2 md:border-b-0 border-purple">
       <div class="text-2xl mb-2">.Free</div>
-      <div>Description</div>
+      <div>With no account you can view and edit
+              checklists, but not save any. With a free account you can view, edit,
+              save and share any public checklists. With a paid account you can view, edit, save
+              and share any public or private checklists.</div>
       <div>Features</div>
       <div>Pricing</div>
     </div>
@@ -60,41 +63,48 @@
   
   {{!-- Footer --}}
   <div class="bg-purple p-8 flex flex-row flex-wrap">
-    <div class="w-full md:w-1/4 flex-none text-center">Links</div>
-    <div class="w-full pt-8 md:w-1/4 md:pt-0 flex-none text-center">Legal</div>
-    <div class="w-full pt-8 md:w-1/4 md:pt-0 flex-none text-center">Social</div>
-    <div class="w-full pt-8 md:w-1/4 md:pt-0 flex-none text-center">Company</div>
+    <div class="w-full md:w-1/4 flex-none text-center">
+      <p class="uppercase text-purple-lighter text-sm sm:mb-6">Links</p>
+      <ul class="list-reset text-xs mb-6">
+        <li class="mt-2 inline-block mr-2 sm:block sm:mr-0"><a href="#"
+            class="text-purple-lighter hover:text-white">FAQ</a></li>
+        <li class="mt-2 inline-block mr-2 sm:block sm:mr-0"><a href="#"
+            class="text-purple-lighter hover:text-white">Help</a></li>
+        <li class="mt-2 inline-block mr-2 sm:block sm:mr-0"><a href="#"
+            class="text-purple-lighter hover:text-white">Support</a></li>
+      </ul>
+    </div>
+    <div class="w-full pt-8 md:w-1/4 md:pt-0 flex-none text-center">
+      <p class="uppercase text-purple-lighter text-sm sm:mb-6">Legal</p>
+      <ul class="list-reset text-xs mb-6">
+        <li class="mt-2 inline-block mr-2 sm:block sm:mr-0"><a href="#"
+            class="text-purple-lighter hover:text-white">Terms</a></li>
+        <li class="mt-2 inline-block mr-2 sm:block sm:mr-0"><a href="#"
+            class="text-purple-lighter hover:text-white">Privacy</a></li>
+      </ul>
+    </div>
+    <div class="w-full pt-8 md:w-1/4 md:pt-0 flex-none text-center">
+      <p class="uppercase text-purple-lighter text-sm sm:mb-6">Social</p>
+      <ul class="list-reset text-xs mb-6">
+        <li class="mt-2 inline-block mr-2 sm:block sm:mr-0"><a href="#"
+            class="text-purple-lighter hover:text-white">Twitter</a></li>
+      </ul>
+    </div>
+    <div class="w-full pt-8 md:w-1/4 md:pt-0 flex-none text-center">
+      <p class="uppercase text-purple-lighter text-sm sm:mb-6">Company</p>
+      <ul class="list-reset text-xs mb-6">
+        <li class="mt-2 inline-block mr-2 sm:block sm:mr-0"><a href="#"
+            class="text-purple-lighter hover:text-white">Blog</a></li>
+        <li class="mt-2 inline-block mr-2 sm:block sm:mr-0"><a href="#"
+            class="text-purple-lighter hover:text-white">About</a></li>
+        <li class="mt-2 inline-block mr-2 sm:block sm:mr-0"><a href="#"
+            class="text-purple-lighter hover:text-white">Contact</a></li>
+      </ul>
+    </div>
   </div>
 </div>
 
-
-
-
-    {{!-- <div class="flex flex-col">
-
-      <div id="hero" class="flex flex-col h-screen">
-        <div class="text-center self-center mt-auto mb-auto rounded-lg p-4">
-          <div class="font-sans font-bold text-3xl lg:text-5xl text-grey-darkest pb-2">
-            Checklisting, together
-          </div>
-          <div class="mt-4 mb-4 text-sm leading-normal lg:text-xl text-grey-darkest font-sans">
-            Checklisting.Club is a simple, principled, collaborative checklist editor.
-          </div>
-          <div class="align-center"><button
-              class="px-3 py-2 border rounded text-lg text-white bg-green hover:text-green hover:border-green hover:bg-white">
-              Sign up
-            </button> <button
-              class="px-3 py-2 border rounded text-lg text-green bg-white hover:text-white hover:border-white hover:bg-green">
-              Learn more
-            </button></div>
-        </div>
-      </div>
-
-      <div id="pricing" class="flex-1 text-center pt-4 bg-purple">
-        <div class="mt-4">
-          <div class="text-xl font-semibold text-white">Features</div>
-        </div>
-      </div>
+{{!-- 
 
       <div id="features" class="flex flex-wrap bg-purple text-white pb-6">
         <div class="lg:flex-1">
@@ -117,113 +127,6 @@
           <div class="text-center text-sm leading-normal p-4">Work with your community to make great things happen!
             Share and build upon the work of your peers! </div>
         </div>
-      </div>
-
-      <div id="example" class="flex-1 text-center mb-6 p-4 pt-6">
-        <div class="mt-6 mb-6">
-          <div class="text-xl font-semibold text-grey-darkest">Open Experimentation</div>
-          <div class="text-sm leading-normal p-4">Try out any of our sample lists below and see for yourself!</div>
-          <div class="align-center mb-6"><button class="px-3 py-2 border rounded text-white bg-purple">Security</button>
-            <button class="px-3 py-2 border rounded text-white bg-purple">Childbirth</button></div> <img
-            src="/static/img/list-example.64f1662.png" style="width: 75%;">
-        </div>
-        <div id="proof" class="flex flex-col">
-          <div class="flex-no-grow self-center text-center m-8 mb-24 p-4 rounded-lg bg-purple-light w-auto">
-            10,000 / 10,000! Amazing Stats!
-          </div>
-        </div>
-        <div id="pricing" class="flex-1 text-center pt-4 bg-grey-light">
-          <div class="mt-4">
-            <div class="text-xl font-semibold text-black">Pricing</div>
-            <div class="text-sm leading-normal p-4">Pay what you want.</div>
-          </div>
-        </div>
-        <div id="features" class="flex flex-wrap">
-          <div class="lg:flex-1 bg-grey-light mr-auto ml-auto rounded">
-            <div class="text-center mt-6 text-xl font-medium">No Account</div>
-            <div class="text-center text-sm leading-normal p-4 mr-16 ml-16 p-4">With no account you can view and edit
-              checklists, but not save any.</div>
-          </div>
-          <div class="lg:flex-1 bg-grey-light mr-auto ml-auto rounded">
-            <div class="text-center mt-6 text-xl font-medium">Free Account</div>
-            <div class="text-center text-sm leading-normal p-4 mr-16 ml-16 p-4">With a free account you can view, edit,
-              save and share any public checklists.</div>
-          </div>
-          <div class="lg:flex-1 bg-grey-light mr-auto ml-auto rounded">
-            <div class="text-center mt-6 text-xl font-medium">Paid Account</div>
-            <div class="text-center text-sm leading-normal p-4 mr-16 ml-16">With a paid account you can view, edit, save
-              and share any public or private checklists.</div>
-          </div>
-        </div>
-        <div id="cta-top" class="flex-1 text-center pt-8">
-          <div class="mt-8 mb-4">
-            <div class="text-xl font-semibold text-grey-darkest">Sign up today!</div>
-          </div>
-        </div>
-        <div id="cta" class="flex">
-          <div class="text-center self-center mr-auto ml-auto rounded-lg pb-20">
-            <div class="align-center bg-green rounded">
-              <form class="w-full max-w-sm">
-                <div class="flex items-center border-b border-b-2 border-grey rounded py-2"><input type="text"
-                    placeholder="Email Address" aria-label="Full name"
-                    class="appearance-none bg-transparent border-none w-full text-white mr-3 py-1 px-2 leading-tight focus:outline-none">
-                  <button type="button"
-                    class="flex-no-shrink bg-white hover:bg-purple border-white hover:border-purple hover:text-white text-sm border-4 text-green py-1 px-2 mr-2 rounded">
-                    Sign Up
-                  </button></div>
-              </form>
-            </div>
-          </div>
-        </div>
-
-        <section class="bg-purple py-8 w-full">
-          <div class="container mx-auto px-8">
-            <div class="table w-full">
-              <div class="block sm:table-cell">
-                <p class="uppercase text-purple-lighter text-sm sm:mb-6">Links</p>
-                <ul class="list-reset text-xs mb-6">
-                  <li class="mt-2 inline-block mr-2 sm:block sm:mr-0"><a href="#"
-                      class="text-purple-lighter hover:text-white">FAQ</a></li>
-                  <li class="mt-2 inline-block mr-2 sm:block sm:mr-0"><a href="#"
-                      class="text-purple-lighter hover:text-white">Help</a></li>
-                  <li class="mt-2 inline-block mr-2 sm:block sm:mr-0"><a href="#"
-                      class="text-purple-lighter hover:text-white">Support</a></li>
-                </ul>
-              </div>
-              <div class="block sm:table-cell">
-                <p class="uppercase text-purple-lighter text-sm sm:mb-6">Legal</p>
-                <ul class="list-reset text-xs mb-6">
-                  <li class="mt-2 inline-block mr-2 sm:block sm:mr-0"><a href="#"
-                      class="text-purple-lighter hover:text-white">Terms</a></li>
-                  <li class="mt-2 inline-block mr-2 sm:block sm:mr-0"><a href="#"
-                      class="text-purple-lighter hover:text-white">Privacy</a></li>
-                </ul>
-              </div>
-              <div class="block sm:table-cell">
-                <p class="uppercase text-purple-lighter text-sm sm:mb-6">Social</p>
-                <ul class="list-reset text-xs mb-6">
-                  <li class="mt-2 inline-block mr-2 sm:block sm:mr-0"><a href="#"
-                      class="text-purple-lighter hover:text-white">Facebook</a></li>
-                  <li class="mt-2 inline-block mr-2 sm:block sm:mr-0"><a href="#"
-                      class="text-purple-lighter hover:text-white">Linkedin</a></li>
-                  <li class="mt-2 inline-block mr-2 sm:block sm:mr-0"><a href="#"
-                      class="text-purple-lighter hover:text-white">Twitter</a></li>
-                </ul>
-              </div>
-              <div class="block sm:table-cell">
-                <p class="uppercase text-purple-lighter text-sm sm:mb-6">Company</p>
-                <ul class="list-reset text-xs mb-6">
-                  <li class="mt-2 inline-block mr-2 sm:block sm:mr-0"><a href="#"
-                      class="text-purple-lighter hover:text-grey-dark">Official Blog</a></li>
-                  <li class="mt-2 inline-block mr-2 sm:block sm:mr-0"><a href="#"
-                      class="text-purple-lighter hover:text-grey-dark">About Us</a></li>
-                  <li class="mt-2 inline-block mr-2 sm:block sm:mr-0"><a href="#"
-                      class="text-purple-lighter hover:text-grey-dark">Contact</a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
 
     </div> --}}
