@@ -25,6 +25,9 @@ app.use(cors());
 
 let bodyParser = require('body-parser');
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+  extended: true,
+}));
 
 // Database Config ------------------------------------------
 
@@ -78,9 +81,16 @@ app.get('/api/ping', async (req, res) => {
 
 // API
 
-// TODO: Create user.
 app.post('/api/user', async (req, res) => {
-  res.send('create user');
+  let user = {
+    "type": "user",
+    "username": req.body.username,
+    "password": req.body.password
+  };
+
+  let u = await db.insert(user);
+
+  res.redirect(`/${req.body.username}`);
 });
 
 // TODO: Read/get user.

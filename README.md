@@ -26,9 +26,8 @@ Unlike a surgeon forgetting to wash his hands | a pilot panicking in a storm | a
 
 
 ## Roadmap/Todos:
-* TODO: Create user model, with login, signup, logout workflow and list associations.
-* TODO: Finish (6) views.
-* TODO: Finish (10) api routes.
+* TODO: Create user model, with login, logout workflow and list associations.
+* TODO: Finish (9) api routes.
 * TODO: Include sample ngninx/apache config in repo.
 * TODO: Toggle checkbox to bg-green and text-white on click.
 * TODO: Install and configure stripe.
