@@ -54,13 +54,20 @@ app.get('/signup', async (req, res) => {
   res.render('signup');
 });
 
-app.get('/dashboard', async (req, res) => {
-  res.render('dashboard');
+app.get('/:username', async (req, res) => {
+  res.render('dashboard', {
+    "user": req.params.username
+  });
 });
 
 app.get('/:username/:listname', async (req, res) => {
-  res.render('list');
+  let checklist = await getUserList(req.params.username, req.params.listname);
+  res.render('list', {
+    "user": req.params.username,
+    "checklist": checklist
+  });
 });
+
 
 // MISC
 
@@ -150,22 +157,6 @@ app.get('/api/list/:id/export', async (req, res) => {
   });
 });
 
-// Get all lists.
-async function getLists() {
-  try {
-    const doc_list = await db.list({include_docs: true});
-    const checklists = doc_list.rows.map((doc) => { return doc.doc; });
-    return checklists;
-  } catch (err) {
-    console.error(err);
-  }
-};
-
-app.get('/api/lists', async (req, res) => {
-  let checklists = await getLists(); 
-  res.json(checklists);
-});
-
 app.get('/api/stats', async (req, res) => {
   res.send('stats');
 });
@@ -173,6 +164,45 @@ app.get('/api/stats', async (req, res) => {
 app.get('/api/pricing', async (req, res) => {
   res.send('pricing interest');
 });
+
+// API -------------------------------------------------------------
+
+// Get all lists.
+async function getLists() {
+  try {
+    let selector = {
+      "selector": {
+        "type": { "$eq": "list" }
+      }
+    };
+
+    let checklists = await db.find(selector);
+
+    return checklists.docs;
+
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+// Get a specific user's list.
+async function getUserList(user, list) {
+  try {
+    let selector = {
+      "selector": {
+        "owner": { "$eq": user },
+        "title": { "$eq": list }
+      }
+    };
+
+    let checklist = await db.find(selector);
+
+    return checklist.docs[0];
+
+  } catch (err) {
+    console.error(err);
+  }
+}
 
 // Start webserver ---------------------------------------------
 
