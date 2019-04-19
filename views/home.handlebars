@@ -3,37 +3,40 @@
   {{!-- Hero --}}
   <div id="hero-bg" class="bg-white min-h-screen flex items-center">
     <div class="bg-white text-center mx-auto p-4 border-2 border-purple rounded"> 
-      <div class="text-4xl mb-4">Checklisting, together | Check it's done</div>
-      <div>Checklisting.Club is a simple, collaborative checklist editor.</div>
+      <div class="text-4xl mb-4">{{!-- Checklisting, together | --}}Check, it's done</div> 
+      <div>Checklisting.Club is a simple, </div>
+      <div>collaborative checklist editor.</div>
       <div class="m-4">
-        <button class="bg-white hover:bg-purple text-purple font-semibold hover:text-white py-2 px-4 border border-purple hover:border-white rounded">Learn More</button>
+        <a href="#products" class="bg-white hover:bg-purple text-purple font-semibold hover:text-white py-2 px-4 border border-purple hover:border-white rounded">Learn More</a>
         <a href="/lists"><button class="bg-white hover:bg-purple text-purple font-semibold hover:text-white py-2 px-4 border border-purple hover:border-white rounded">Try It Out</button></a>
       </div>
     </div>
   </div>
 
   {{!-- Products --}}
-  <div class="bg-grey-lighter flex flex-row flex-wrap border-t-2 border-b-2 border-purple">
+  <div id="products" class="bg-grey-lighter flex flex-row flex-wrap border-t-2 border-b-2 border-purple">
     <div class="w-full p-8 md:w-1/3 flex-none text-center border-b-2 md:border-r-2 md:border-b-0 border-purple">
-      <div class="text-2xl mb-2">.Free</div>
+      <div class="text-2xl mb-2">Checklisting.Free</div>
       <div>With no account you can view and edit
               checklists, but not save any. With a free account you can view, edit,
               save and share any public checklists. With a paid account you can view, edit, save
               and share any public or private checklists.</div>
-      <div>Features</div>
-      <div>Pricing</div>
+      <div><strong>Features</strong></div>
+      <div>View &amp; Interact with lists.</div>
+      <div>Free, forever</div>
     </div>
     <div class="w-full p-8 md:w-1/3 flex-none text-center bg-grey-light border-b-2 md:border-r-2 md:border-b-0 border-purple">
-      <div class="text-2xl mb-2">.Club</div>
+      <div class="text-2xl mb-2">Checklisting.Club</div>
       <div>For individuals that want a more collaborative, systematic approach to their work, Checklisting.Club provides a collaborative and systematic set of tools that provide peace of mind.</div>
+      <div><strong>Features</strong></div>
       <div>Features</div>
-      <div>Pricing</div>
+      <div>$12, once</div>
     </div>
     <div class="w-full p-8 md:w-1/3 flex-none text-center">
-      <div class="text-2xl mb-2">.Org</div>
+      <div class="text-2xl mb-2">Checklisting.Org</div>
       <div>For organizations that need safety during cruical, complex processes, Checklisting.Org provides a collaborative and systematic set of tools that provide peace of mind.</div>
-      <div>Features</div>
-      <div>Pricing</div>
+      <div><strong>Features</strong></div>
+      <div>Inquire</div>
     </div>
   </div>
 
@@ -54,9 +57,9 @@
 
   {{!-- Call to Action --}}
   <div class="bg-grey-lighter p-8 text-center border-t-2 border-purple">
-    <div class="text-2xl">Join over # users working on # checklists!</div>
+    <div class="text-2xl">Join over {{ stats.user_count }} users working on {{ stats.list_count }} checklists!</div>
     <div class="m-4">
-      <button class="bg-white hover:bg-purple text-purple font-semibold hover:text-white py-2 px-4 border border-purple hover:border-white rounded">Learn More</button>
+      <a href="#products" class="bg-white hover:bg-purple text-purple font-semibold hover:text-white py-2 px-4 border border-purple hover:border-white rounded">Learn More</a>
       <a href="/lists"><button class="bg-white hover:bg-purple text-purple font-semibold hover:text-white py-2 px-4 border border-purple hover:border-white rounded">Try It Out</button></a>
     </div>
   </div>

@@ -39,7 +39,10 @@ const db = nano.use(process.env.DB_NAME);
 // VIEWS
 
 app.get('/', async (req, res) => {
-  res.render('home');
+  let stats = await getStats();
+  res.render('home', {
+    "stats": stats
+  });
 });
 
 app.get('/lists', async (req, res) => {
@@ -176,6 +179,37 @@ app.get('/api/pricing', async (req, res) => {
 });
 
 // API -------------------------------------------------------------
+
+// Get stats for home page. 
+async function getStats() {
+  try {
+    let select_users = {
+      "selector": {
+        "type": { "$eq": "user" }
+      }
+    };
+
+    let users = await db.find(select_users);
+    let user_count = users.docs.length;
+
+    let select_lists = {
+      "selector": {
+        "type": { "$eq": "list" }
+      }
+    };
+
+    let lists = await db.find(select_lists);
+    let list_count = users.docs.length;
+
+    return {
+      "user_count": user_count,
+      "list_count": list_count
+    }
+
+  } catch (err) {
+    console.error(err);
+  }
+}
 
 // Get all lists.
 async function getLists() {

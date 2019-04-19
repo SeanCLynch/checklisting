@@ -54,6 +54,7 @@ __Scripts / Commands / Magic Spells:__
 
 
 __Examples of uses:__
+* https://news.ycombinator.com/item?id=19682451 - excellent
 * https://news.ycombinator.com/item?id=16956899
 * https://news.ycombinator.com/item?id=18386252
 * https://news.ycombinator.com/item?id=19032180
