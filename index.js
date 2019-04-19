@@ -197,7 +197,7 @@ async function getStats() {
     };
 
     let lists = await db.find(select_lists);
-    let list_count = users.docs.length;
+    let list_count = lists.docs.length;
 
     return {
       "user_count": user_count,
