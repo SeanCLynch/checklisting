@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "mocha --exit"
+    "test": "mocha --exit",
+    "seed": "node tasks/seed.js"
   },
   "author": "sean",
   "license": "MIT",

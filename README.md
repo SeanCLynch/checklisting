@@ -48,6 +48,7 @@ __Best Practices:__
 
 __Scripts / Commands / Magic Spells:__
 * `npm start` - runs server
+* `npm run seed` - seeds running db with sample list.
 * `sudo docker ps`, `sudo docker run -p 5984:5984 -d couchdb`, `sudo docker pause/unpause <container_name>` - dev couchdb
 * `ssh -f -N -L 5984:localhost:5984 sean@checklisting.club` use remote futon locally. `ps -ef | grep ssh` then `kill <PID>` to close ssh.
 * `curl http://localhost:5984` to check couchdb, `http://localhost:5984/_utils` for futon.
