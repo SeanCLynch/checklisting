@@ -25,12 +25,25 @@ Unlike a surgeon forgetting to wash his hands | a pilot panicking in a storm | a
 * More... (databases, pen testing, debugging(?), network config, etc)
 
 
-## Roadmap/Todos:
-* TODO: Create user model, with login, logout workflow and list associations.
-* TODO: Finish (9) api routes.
-* TODO: Include sample ngninx/apache config in repo.
-* TODO: Toggle checkbox to bg-green and text-white on click.
-* TODO: Install and configure stripe.
+## Getting Started
+
+* Install NodeJS.
+* Install CouchDB.
+* Clone this repo.
+
+
+## Useful Commands/Scripts/Spells
+
+* `npm start` - runs main app.
+* `npm run seed` - seeds a running db with sample lists.
+
+* `sudo docker ps` - check docker status.
+* `sudo docker run -p 5984:5984 -d couchdb` - start local couchdb.
+* `sudo docker [pause/unpause] <container_name>` - pause or unpause local couchdb.
+* `curl http://localhost:5984` - check local couchdb.
+* `http://localhost:5984/_utils` - UI for local couchdb instance.
+* `ssh -f -N -L 5984:localhost:5984 sean@checklisting.club` - open connection to remote couchdb locally. 
+* `ps -ef | grep ssh` then `kill <PID>` - close connection to remote couchdb.
 
 
 ## Contributors:
@@ -44,14 +57,6 @@ __Best Practices:__
 * keep it short: ~5-9 items recomended, single sheet of paper.
 * easy to read: sans-serif, upper/lower case, avoid colors or graphics.
 * authorize a reader: assign specific team member to initiate checklist use.
-
-
-__Scripts / Commands / Magic Spells:__
-* `npm start` - runs server
-* `npm run seed` - seeds running db with sample list.
-* `sudo docker ps`, `sudo docker run -p 5984:5984 -d couchdb`, `sudo docker pause/unpause <container_name>` - dev couchdb
-* `ssh -f -N -L 5984:localhost:5984 sean@checklisting.club` use remote futon locally. `ps -ef | grep ssh` then `kill <PID>` to close ssh.
-* `curl http://localhost:5984` to check couchdb, `http://localhost:5984/_utils` for futon.
 
 
 __Examples of uses:__

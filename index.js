@@ -6,19 +6,19 @@ const port = process.env.API_PORT;
 const fs = require('fs');
 const path = require('path');
 
-// Logging Config ------------------------------------------
+// Logging Config ----------------------------------------------------------------------------------
 
 const morgan = require('morgan');
 app.use(morgan(':status :method :url - :response-time ms'));
 
-// View Config ---------------------------------------------
+// View Config -------------------------------------------------------------------------------------
 
 const exphbs = require('express-handlebars');
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 app.use(express.static('public'));
 
-// Request Config -------------------------------------------
+// Request Config ----------------------------------------------------------------------------------
 
 let cors = require('cors');
 app.use(cors());
@@ -29,15 +29,16 @@ app.use(bodyParser.urlencoded({
   extended: true,
 }));
 
-// Database Config ------------------------------------------
+// Database Config ---------------------------------------------------------------------------------
 
 const nano = require('nano')(process.env.DB_URL);
 const db = nano.use(process.env.DB_NAME);
 
-// Routes -------------------------------------------------
+// Routes ------------------------------------------------------------------------------------------
 
 // VIEWS
 
+// Renders homepage.
 app.get('/', async (req, res) => {
   let stats = await getStats();
   res.render('home', {
@@ -45,6 +46,8 @@ app.get('/', async (req, res) => {
   });
 });
 
+// Renders list of all checklists.
+// TODO: Only render lists marked `sample`.
 app.get('/lists', async (req, res) => {
   let checklists = await getLists();	
   res.render('lists', {
@@ -66,6 +69,7 @@ app.get('/:username', async (req, res) => {
   });
 });
 
+// Renders a specific list.
 app.get('/:username/:listname', async (req, res) => {
   let checklist = await getUserList(req.params.username, req.params.listname);
   res.render('list', {
@@ -74,16 +78,14 @@ app.get('/:username/:listname', async (req, res) => {
   });
 });
 
-
-// MISC
+// API Endpoints -----------------------------------------------------------------------------------
 
 // Test route, health checks and such.
 app.get('/api/ping', async (req, res) => {
   res.send('Pong!');
 });
 
-// API
-
+// Create a new user. 
 app.post('/api/user', async (req, res) => {
   let user = {
     "type": "user",
@@ -170,15 +172,11 @@ app.get('/api/list/:id/export', async (req, res) => {
   });
 });
 
-app.get('/api/stats', async (req, res) => {
-  res.send('stats');
-});
-
 app.get('/api/pricing', async (req, res) => {
   res.send('pricing interest');
 });
 
-// API -------------------------------------------------------------
+// API Functions -----------------------------------------------------------------------------------
 
 // Get stats for home page. 
 async function getStats() {
@@ -248,7 +246,7 @@ async function getUserList(user, list) {
   }
 }
 
-// Start webserver ---------------------------------------------
+// Start webserver ---------------------------------------------------------------------------------
 
 app.listen(port, () => console.log(`Listening on ${port}!`));
 
