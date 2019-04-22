@@ -9,6 +9,29 @@ A good checklist, with the proper team culture, can dramatically reduce the dama
 Unlike a surgeon forgetting to wash his hands | a pilot panicking in a storm | a security guard wandering aimlessly | etc., Checklisting.Club provides a collaborative action plan for any situation. 
 
 
+## For Organizations:
+
+For skilled workers and managers who need safety during crucial and complex processes, Checklisting.Club is a website that provides a collaborative and systematic set of tools to provide preparedness and peace of mind.
+
+
+## Examples / Who is this for?
+
+* Pilots managing uncommon situations.
+* Doctors performing routine procedures.
+* Chefs following cleaning standards.
+* Engineers building secure infrastructure.
+* Designers creating accessible interfaces.
+* Data scientists debugging models.
+* IT administrators setting up a new server.
+* Software developers learning version control.
+* Police officers, machinists, teachers, nurses, and more...
+
+
+## Background: 
+* The Checklist Manifesto - Atul Gawande
+* Github.com
+
+
 ## Features:
 * Easily create checklists. Duh.
 * Automatically (and optionally!) scan your checklist for best practices (e.g. number of items, simple wording, do-confirm vs read-do, etc).
@@ -16,13 +39,6 @@ Unlike a surgeon forgetting to wash his hands | a pilot panicking in a storm | a
 * Update, change and revise checklists with the community, based on real-world experiences.
 * Or optionally create private checklists for secret things.
 * Subscribe to curated articles on embracing a culture of teamwork and professional discipline.
-
-
-## Sample use cases & examples:
-* Forgotten a command while setting up a new machine?
-* Missed a step while using version control?
-* Forgotten an aspect of accessibility while writing HTML pages?
-* More... (databases, pen testing, debugging(?), network config, etc)
 
 
 ## Getting Started
