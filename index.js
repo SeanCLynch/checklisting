@@ -63,6 +63,17 @@ app.get('/signup', async (req, res) => {
   res.render('signup');
 });
 
+app.get('/interest', async (req, res) => {
+  let query_type = req.query.type;
+
+  let analytics = await getAnalytics();
+  analytics[query_type]++;
+  let updated = await updateAnalytics(analytics);
+  console.log(analytics);
+
+  res.render('thankyou');
+});
+
 app.get('/:username', async (req, res) => {
   res.render('dashboard', {
     "user": req.params.username
@@ -241,6 +252,31 @@ async function getUserList(user, list) {
 
     return checklist.docs[0];
 
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function getAnalytics() {
+  try {
+    let selector = {
+      "selector": {
+        "type": { "$eq": "analytics" }
+      }
+    };
+
+    let analytics = await db.find(selector);
+
+    return analytics.docs[0];
+  } catch (err) {
+    console.error(err);
+  }
+}
+
+async function updateAnalytics(a) {
+  try {
+    let resp = await db.insert(a);
+    return resp.ok;
   } catch (err) {
     console.error(err);
   }

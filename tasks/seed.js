@@ -10,6 +10,12 @@ const db = nano.use(process.env.DB_NAME);
 
 let documents = [
     {
+        "type": "analytics",
+        "free": 0,
+        "club": 0,
+        "org": 0
+    },
+    {
         "type": "user",
         "username": "sean"
     },
