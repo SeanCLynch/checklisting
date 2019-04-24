@@ -1,1 +1,31 @@
-<h1>Hello World!!@</h1>
+<!doctype html>
+
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>Checklisting Blog</title>
+  <meta name="description" content="blog">
+  <meta name="author" content="sean">
+
+  <style>
+      body {
+          margin: 0 auto;
+          max-width: 50em;
+      }
+  </style>
+
+</head>
+
+<body>
+    <h1>Hello</h1>
+    <ul>
+    {% for post in site.posts %}
+        <li>
+        <a href="{{ post.url }}">{{ post.title }}</a>
+        </li>
+    {% endfor %}
+    </ul>
+  <script></script>
+</body>
+</html>
