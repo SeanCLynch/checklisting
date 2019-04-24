@@ -34,6 +34,18 @@ app.use(bodyParser.urlencoded({
 const nano = require('nano')(process.env.DB_URL);
 const db = nano.use(process.env.DB_NAME);
 
+// Crypto Config -----------------------------------------------------------------------------------
+
+let bcrypt = require('bcryptjs');
+
+// Session Config ----------------------------------------------------------------------------------
+
+let cookieSession = require('cookie-session');
+app.use(cookieSession({
+  "name": "checklistingSession",
+  "secret": "checkmate"
+}));
+
 // Routes ------------------------------------------------------------------------------------------
 
 // VIEWS
@@ -42,7 +54,8 @@ const db = nano.use(process.env.DB_NAME);
 app.get('/', async (req, res) => {
   let stats = await getStats();
   res.render('home', {
-    "stats": stats
+    "stats": stats,
+    "user": req.session.user
   });
 });
 
@@ -51,16 +64,30 @@ app.get('/', async (req, res) => {
 app.get('/lists', async (req, res) => {
   let checklists = await getLists();	
   res.render('lists', {
-    "checklists": checklists
+    "checklists": checklists,
+    "user": req.session.user
   });
 });
 
 app.get('/login', async (req, res) => {
-  res.render('login');
+  if (req.session.user) {
+    res.redirect(`/${req.session.user}`);
+  } else {
+    res.render('login');
+  }
 });
 
 app.get('/signup', async (req, res) => {
-  res.render('signup');
+  if (req.session.user) {
+    res.redirect(`/${req.session.user}`);
+  } else {
+    res.render('signup');
+  }
+});
+
+app.get('/api/logout', async (req, res) => {
+  req.session = null;
+  res.redirect('/');
 });
 
 app.get('/interest', async (req, res) => {
@@ -69,14 +96,14 @@ app.get('/interest', async (req, res) => {
   let analytics = await getAnalytics();
   analytics[query_type]++;
   let updated = await updateAnalytics(analytics);
-  console.log(analytics);
 
   res.render('thankyou');
 });
 
 app.get('/:username', async (req, res) => {
   res.render('dashboard', {
-    "user": req.params.username
+    "username": req.params.username,
+    "user": req.session.user
   });
 });
 
@@ -84,8 +111,9 @@ app.get('/:username', async (req, res) => {
 app.get('/:username/:listname', async (req, res) => {
   let checklist = await getUserList(req.params.username, req.params.listname);
   res.render('list', {
-    "user": req.params.username,
-    "checklist": checklist
+    "username": req.params.username,
+    "checklist": checklist,
+    "user": req.session.user
   });
 });
 
@@ -98,19 +126,49 @@ app.get('/api/ping', async (req, res) => {
 
 // Create a new user. 
 app.post('/api/user', async (req, res) => {
+
+  // Hash & Salt PW
+  let salt = bcrypt.genSaltSync(10);
+  let hash = bcrypt.hashSync(req.body.password, salt);
+
+  // Create user doc.
   let user = {
     "type": "user",
     "username": req.body.username,
-    "password": req.body.password
+    "password": hash
   };
 
-  let u = await db.insert(user);
+  // Update user session.
+  req.session.user = req.body.username;
 
+  // Insert it & redirect to user's dashboard.
+  await db.insert(user);
   res.redirect(`/${req.body.username}`);
 });
 
-// TODO: Read/get user.
-app.post('/api/user/:id', async (req, res) => {
+// Login user.
+app.post('/api/login', async (req, res) => {
+
+  // Check password.
+  let pw = req.body.password;
+  let hashed_pw = await getUser(req.body.username);
+  hashed_pw = hashed_pw.password;
+  let correct_pw = bcrypt.compareSync(pw, hashed_pw);
+
+  // Update user session.
+  req.session.user = req.body.username;
+
+  // Redirect as appropriate.
+  if (correct_pw) {
+    res.redirect(`/${req.body.username}`);
+  } else {
+    red.redirect('/');
+  }
+});
+
+
+// Get user.
+app.get('/api/user/:id', async (req, res) => {
   res.send('read/get user');
 });
 
@@ -183,10 +241,6 @@ app.get('/api/list/:id/export', async (req, res) => {
   });
 });
 
-app.get('/api/pricing', async (req, res) => {
-  res.send('pricing interest');
-});
-
 // API Functions -----------------------------------------------------------------------------------
 
 // Get stats for home page. 
@@ -238,6 +292,24 @@ async function getLists() {
   }
 };
 
+// Get a user.
+async function getUser(username) {
+  try {
+    let selector = {
+      "selector": {
+        "type": "user",
+        "username": { "$eq": username }
+      }
+    };
+
+    let user = await db.find(selector);
+
+    return user.docs[0];
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 // Get a specific user's list.
 async function getUserList(user, list) {
   try {
@@ -281,6 +353,41 @@ async function updateAnalytics(a) {
     console.error(err);
   }
 }
+
+// Custom user commands ----------------------------------------------------------------------------
+
+async function createUser(username, password) {
+  try {
+    let req_opts = {
+      "db": "_users",
+      "method": "PUT",
+      "content_type": "json",
+      "path": `org.couchdb.user:${username}`,
+      "body": {"name": username, "password": password, "roles": [], "type": "user"}
+    };
+    
+    let resp = await nano.request(req_opts);
+    return resp.ok;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+async function createUserSession() {
+  try {
+    let req_opts = {
+      "db": "_session",
+      "method": "POST",
+      "content_type": "json",
+      "body": {"name": "jan", "password": "apple"}
+    };
+    
+    let resp = await nano.request(req_opts);
+    return resp.ok;
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 // Start webserver ---------------------------------------------------------------------------------
 

@@ -1,17 +1,14 @@
-## :heavy_check_mark: Checklisting (for Tech)
+## :heavy_check_mark: Checklisting .Free .Club .Org
+
+> Checklisting enables you to safely manage any situation using collaboration.
 
 Extreme complexity makes it easy to overlook routine matters during pressing circumstances (and moments of forgetfulness!). Formalizing these steps into a well-formatted series of actions, and making it easily accessible in all situations, are the key components of a good checklist.
 
 A good checklist, with the proper team culture, can dramatically reduce the damage of careless, trivial errors in a project. Checklists have been used in aviation, construction, surgery, and more with outstanding results.
 
->For skilled workers and managers who need safety during crucial, complex processes, Checklisting.Club is a website that provides a collaborative and systematic set of tools to provide peace of mind.
+> For skilled workers and managers who need safety during crucial and complex processes, Checklisting.Club is a website that provides a collaborative and systematic set of tools to provide preparedness and peace of mind.
 
 Unlike a surgeon forgetting to wash his hands | a pilot panicking in a storm | a security guard wandering aimlessly | etc., Checklisting.Club provides a collaborative action plan for any situation. 
-
-
-## For Organizations:
-
-For skilled workers and managers who need safety during crucial and complex processes, Checklisting.Club is a website that provides a collaborative and systematic set of tools to provide preparedness and peace of mind.
 
 
 ## Examples / Who is this for?
