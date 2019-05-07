@@ -100,6 +100,12 @@ app.get('/interest', async (req, res) => {
   res.render('thankyou');
 });
 
+app.post('/stripe', async (req, res) => {
+  const event_json = JSON.parse(req.body);
+  console.log(event_json);
+  res.send(200);
+});
+
 app.get('/:username', async (req, res) => {
   res.render('dashboard', {
     "username": req.params.username,
