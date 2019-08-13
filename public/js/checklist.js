@@ -8,7 +8,7 @@ class List {
             return new Item(item, idx);
         });
 
-        // Setup listeners.
+        // Add event listeners.
         let add_btn = document.getElementById('add');
         add_btn.addEventListener('click', (event) => this.add(event));
 
@@ -21,10 +21,11 @@ class List {
 
     add(event) {
         let new_item = document.createElement('div');
-        let next_id_num = this.items.length + 1;
+        let next_id_num = this.items.length;
         new_item.innerText = "New Checklist Item";
         new_item.className = `item-${next_id_num} p-2 mb-2 bg-grey rounded`;
         this.listDiv.appendChild(new_item);
+        this.items.push(new_item);
     }
 
     fork(event) {
@@ -38,6 +39,7 @@ class List {
 
 class Item {
     constructor(itemDiv, idx) {
+        // Initialize DOM component.
         this.itemDiv = itemDiv;
         this.itemDiv.classList.remove('item');
         this.itemDiv.classList.add(`item-${idx}`);
@@ -53,3 +55,6 @@ class Item {
 
 // Start Page.
 let list = new List('list');
+
+// Load icons.
+feather.replace();

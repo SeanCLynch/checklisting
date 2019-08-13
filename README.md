@@ -70,10 +70,17 @@ __Best Practices:__
 * keep it short: ~5-9 items recomended, single sheet of paper.
 * easy to read: sans-serif, upper/lower case, avoid colors or graphics.
 * authorize a reader: assign specific team member to initiate checklist use.
+* Two main types of checklists: DO-CONFIRM and READ-DO
 
 
 __Examples of uses:__
+* https://news.ycombinator.com/item?id=17358088 - excellent
 * https://news.ycombinator.com/item?id=19682451 - excellent
+* https://news.ycombinator.com/item?id=20495739
+* https://news.ycombinator.com/item?id=19949952
+* https://news.ycombinator.com/item?id=19682451
+* https://news.ycombinator.com/item?id=19849787
+* https://news.ycombinator.com/item?id=19857969
 * https://news.ycombinator.com/item?id=16956899
 * https://news.ycombinator.com/item?id=18386252
 * https://news.ycombinator.com/item?id=19032180
@@ -93,8 +100,12 @@ __Examples of uses:__
 * https://www.indiehackers.com/@robhope/a-checklist-to-help-green-light-your-next-idea-bbd6ae1bcd
 * https://securitycheckli.st/
 * https://24ways.org/2018/securing-your-site-like-its-1999/
+* https://www.nature.com/news/hospital-checklists-are-meant-to-save-lives-so-why-do-they-often-fail-1.18057 
 
 
 __Competitors (?):__
 * https://process.st/
 * https://www.forgett.com/
+* https://cleverchecklist.com/
+* https://devchecklists.com/
+* https://ch.ckl.st/home

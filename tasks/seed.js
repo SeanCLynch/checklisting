@@ -1,12 +1,18 @@
-// Remember to create the process.env.DB_NAME database first!
-
-// Database Config ------------------------------------------
-
 require('dotenv').config();
-const nano = require('nano')(process.env.DB_URL);
-const db = nano.use(process.env.DB_NAME);
 
-// Sample Docs ----------------------------------------------
+const nano = require('nano')(process.env.DB_URL);
+
+async function seed() {
+    await nano.db.destroy(process.env.DB_NAME);
+    await nano.db.create(process.env.DB_NAME);
+    const db = nano.use(process.env.DB_NAME);
+    db.bulk({docs: documents}).then((body) => {
+        console.log((body.length == documents.length) ? "Success!" : "Error!");
+    });
+}
+seed();
+
+// Seed Docs ----------------------------------------------
 
 let documents = [
     {
@@ -155,9 +161,3 @@ let documents = [
         ]
     }
 ];
-
-// Upload 
-
-db.bulk({docs: documents}).then((body) => {
-    console.log((body.length == documents.length) ? "Success!" : "Error!");
-});
