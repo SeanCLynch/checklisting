@@ -48,7 +48,7 @@ Unlike a surgeon forgetting to wash his hands | a pilot panicking in a storm | a
 ## Useful Commands/Scripts/Spells
 
 * `npm start` - runs main app.
-* `npm run seed` - seeds a running db with sample lists.
+* `npm run seed` - seeds a running db 'checklists' with sample lists.
 
 * `sudo docker ps` - check docker status.
 * `sudo docker run -p 5984:5984 -d couchdb` - start local couchdb.

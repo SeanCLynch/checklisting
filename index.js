@@ -48,7 +48,7 @@ app.use(cookieSession({
 
 // Routes ------------------------------------------------------------------------------------------
 
-// VIEWS
+// A) ROUTES FOR WEBAPP ----------------------------------------------------------------------------
 
 // Renders homepage.
 app.get('/', async (req, res) => {
@@ -69,6 +69,7 @@ app.get('/lists', async (req, res) => {
   });
 });
 
+// Renders login screen.
 app.get('/login', async (req, res) => {
   if (req.session.user) {
     res.redirect(`/${req.session.user}`);
@@ -77,6 +78,7 @@ app.get('/login', async (req, res) => {
   }
 });
 
+// Renders signup screen.
 app.get('/signup', async (req, res) => {
   if (req.session.user) {
     res.redirect(`/${req.session.user}`);
@@ -85,11 +87,13 @@ app.get('/signup', async (req, res) => {
   }
 });
 
+// Redirect to, and then render homepage.
 app.get('/api/logout', async (req, res) => {
   req.session = null;
   res.redirect('/');
 });
 
+// Render thankyou screen.
 app.get('/interest', async (req, res) => {
   let query_type = req.query.type;
 
@@ -100,12 +104,14 @@ app.get('/interest', async (req, res) => {
   res.render('thankyou');
 });
 
+
 app.post('/stripe', async (req, res) => {
   const event_json = JSON.parse(req.body);
   console.log(event_json);
   res.send(200);
 });
 
+// Render user's dashboard/homepage.
 app.get('/:username', async (req, res) => {
   res.render('dashboard', {
     "username": req.params.username,
@@ -113,7 +119,7 @@ app.get('/:username', async (req, res) => {
   });
 });
 
-// Renders a specific list.
+// Renders a user's list.
 app.get('/:username/:listname', async (req, res) => {
   let checklist = await getUserList(req.params.username, req.params.listname);
   res.render('list', {
@@ -123,13 +129,40 @@ app.get('/:username/:listname', async (req, res) => {
   });
 });
 
-// API Endpoints -----------------------------------------------------------------------------------
+// B) ROUTES FOR API -------------------------------------------------------------------------------
 
+// GET /PING 
 // Test route, health checks and such.
 app.get('/api/ping', async (req, res) => {
   res.send('Pong!');
 });
 
+
+
+// POST /LOGIN 
+// Login user.
+app.post('/api/login', async (req, res) => {
+
+  // Check password.
+  let pw = req.body.password;
+  let hashed_pw = await getUser(req.body.username);
+  hashed_pw = hashed_pw.password;
+  let correct_pw = bcrypt.compareSync(pw, hashed_pw);
+
+  // Update user session.
+  req.session.user = req.body.username;
+
+  // Redirect as appropriate.
+  if (correct_pw) {
+    res.redirect(`/${req.body.username}`);
+  } else {
+    red.redirect('/');
+  }
+});
+
+
+
+// POST /USER 
 // Create a new user. 
 app.post('/api/user', async (req, res) => {
 
@@ -152,48 +185,33 @@ app.post('/api/user', async (req, res) => {
   res.redirect(`/${req.body.username}`);
 });
 
-// Login user.
-app.post('/api/login', async (req, res) => {
-
-  // Check password.
-  let pw = req.body.password;
-  let hashed_pw = await getUser(req.body.username);
-  hashed_pw = hashed_pw.password;
-  let correct_pw = bcrypt.compareSync(pw, hashed_pw);
-
-  // Update user session.
-  req.session.user = req.body.username;
-
-  // Redirect as appropriate.
-  if (correct_pw) {
-    res.redirect(`/${req.body.username}`);
-  } else {
-    red.redirect('/');
-  }
-});
-
-
-// Get user.
+// GET /USER/:id
+// TODO: Get user.
 app.get('/api/user/:id', async (req, res) => {
   res.send('read/get user');
 });
 
+// PUT /USER/:id
 // TODO: Update user.
 app.put('/api/user/:id', async (req, res) => {
   res.send('update user');
 });
 
-// TODO: Delete user. 
+// DELETE /USER/:id
+// TODO: Delete user, only if you are that user.
 app.delete('/api/user/:id', async (req, res) => {
   res.send('delete user');
 });
 
 
+
+// POST /LIST
 // TODO: Create list.
 app.post('/api/list', async (req, res) => {
   res.send('create list');
 });
 
+// GET /LIST/:id
 // Read/get list.
 app.get('/api/list/:id', async (req, res) => {
   console.log("GET /list/" + req.params.id);
@@ -201,16 +219,19 @@ app.get('/api/list/:id', async (req, res) => {
   res.json(checklist);
 });
 
+// PUT /LIST/:id
 // TODO: Update list.
 app.put('/api/list/:id', async (req, res) => {
   res.send('update list');
 });
 
-// TODO: Delete list. 
+// DELETE /LIST/:id
+// TODO: Delete list, only if you are that lists owner.
 app.delete('/api/list/:id', async (req, res) => {
   res.send('delete list');
 });
 
+// GET /LIST/:id/EXPORT
 // TODO: Export list.
 // Check out node-latex.
 app.get('/api/list/:id/export', async (req, res) => {
@@ -247,9 +268,11 @@ app.get('/api/list/:id/export', async (req, res) => {
   });
 });
 
-// API Functions -----------------------------------------------------------------------------------
+// Model Functions ---------------------------------------------------------------------------------
 
-// Get stats for home page. 
+// A) APP DIAGNOSTICS & RUNNING STATS
+
+// Get live stats on #users & #lists for home page. 
 async function getStats() {
   try {
     let select_users = {
@@ -278,7 +301,36 @@ async function getStats() {
   } catch (err) {
     console.error(err);
   }
-}
+};
+
+// Used internally for measuring interest levels in a series of products.
+async function getAnalytics() {
+  try {
+    let selector = {
+      "selector": {
+        "type": { "$eq": "analytics" }
+      }
+    };
+
+    let analytics = await db.find(selector);
+
+    return analytics.docs[0];
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+// Used internally for measuring interest levels in a series of products.
+async function updateAnalytics(a) {
+  try {
+    let resp = await db.insert(a);
+    return resp.ok;
+  } catch (err) {
+    console.error(err);
+  }
+};
+
+// B) LISTS
 
 // Get all lists.
 async function getLists() {
@@ -298,6 +350,8 @@ async function getLists() {
   }
 };
 
+// C) USER
+
 // Get a user.
 async function getUser(username) {
   try {
@@ -314,7 +368,7 @@ async function getUser(username) {
   } catch (err) {
     console.error(err);
   }
-}
+};
 
 // Get a specific user's list.
 async function getUserList(user, list) {
@@ -333,34 +387,7 @@ async function getUserList(user, list) {
   } catch (err) {
     console.error(err);
   }
-}
-
-async function getAnalytics() {
-  try {
-    let selector = {
-      "selector": {
-        "type": { "$eq": "analytics" }
-      }
-    };
-
-    let analytics = await db.find(selector);
-
-    return analytics.docs[0];
-  } catch (err) {
-    console.error(err);
-  }
-}
-
-async function updateAnalytics(a) {
-  try {
-    let resp = await db.insert(a);
-    return resp.ok;
-  } catch (err) {
-    console.error(err);
-  }
-}
-
-// Custom user commands ----------------------------------------------------------------------------
+};
 
 async function createUser(username, password) {
   try {
